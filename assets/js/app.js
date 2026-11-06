@@ -146,9 +146,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     <!-- Slide Image with Lightbox trigger -->
                     <div class="relative group cursor-pointer overflow-hidden themed-inner bg-slate-950" onclick="window.openLightboxBySlideId('${slide.id}')">
-                        <img src="${slide.image}" alt="${slide.titleEn}" class="w-full h-52 object-contain bg-black/20 group-hover:scale-102 transition duration-300" loading="lazy">
+                        <img src="${slide.image}" alt="${slide.titleEn}" class="w-full h-56 sm:h-60 object-contain bg-black/20 group-hover:scale-102 transition duration-300" loading="lazy">
                         <div class="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition flex items-center justify-center backdrop-blur-[1px]">
-                            <span class="px-3 py-1.5 rounded-xl bg-slate-900/95 text-white text-xs font-bold shadow-lg border border-slate-700 flex items-center gap-1.5">
+                            <span class="px-3.5 py-2 rounded-xl bg-slate-900/95 text-white text-xs font-bold shadow-lg border border-slate-700 flex items-center gap-1.5">
                                 <span>🔍</span> تكبير السلايد الأصلية
                             </span>
                         </div>
@@ -156,27 +156,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     <!-- Titles -->
                     <div class="p-5 pb-2">
-                        <h3 class="text-lg font-bold text-heading leading-snug">${slide.titleAr}</h3>
+                        <h3 class="text-xl font-bold text-heading leading-snug">${slide.titleAr}</h3>
                         <div class="text-xs font-mono text-slate-400 mt-1">${slide.titleEn}</div>
                     </div>
 
                     <!-- Explanations in Egyptian Slang -->
                     <div class="px-5 py-3">
-                        <div class="p-4 rounded-xl slang-callout shadow-sm">
-                            <div class="flex items-center gap-2 text-xs font-bold slang-callout-title mb-1.5">
-                                <span class="text-sm">💡</span> الشرح بالعامية (بالبلدي وبكل بساطة):
+                        <div class="p-4 sm:p-5 rounded-2xl slang-callout shadow-sm">
+                            <div class="flex items-center gap-2 text-xs sm:text-sm font-bold slang-callout-title mb-2">
+                                <span class="text-base">💡</span> الشرح بالعامية (بالبلدي وبكل بساطة):
                             </div>
-                            <p class="text-sm slang-callout-text leading-relaxed font-normal whitespace-pre-line">${slide.slangExplanation}</p>
+                            <p class="text-base slang-callout-text leading-relaxed font-normal whitespace-pre-line">${slide.slangExplanation}</p>
                         </div>
                     </div>
 
                     <!-- Practical Example -->
                     <div class="px-5 pb-3">
-                        <div class="p-4 rounded-xl example-callout shadow-sm">
-                            <div class="flex items-center gap-2 text-xs font-bold example-callout-title mb-1.5">
-                                <span class="text-sm">🚀</span> مثال عملي من الواقع:
+                        <div class="p-4 sm:p-5 rounded-2xl example-callout shadow-sm">
+                            <div class="flex items-center gap-2 text-xs sm:text-sm font-bold example-callout-title mb-2">
+                                <span class="text-base">🚀</span> مثال عملي من الواقع:
                             </div>
-                            <p class="text-xs example-callout-text leading-relaxed whitespace-pre-line">${slide.practicalExample}</p>
+                            <p class="text-sm sm:text-base example-callout-text leading-relaxed whitespace-pre-line">${slide.practicalExample}</p>
                         </div>
                     </div>
 
@@ -222,69 +222,69 @@ document.addEventListener('DOMContentLoaded', () => {
         const slide = state.allSlides[state.deckIndex];
 
         deckContainer.innerHTML = `
-            <div class="themed-card bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl max-w-5xl mx-auto">
+            <div class="themed-card bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl max-w-7xl mx-auto">
                 <!-- Deck Controls Top -->
-                <div class="flex items-center justify-between gap-4 pb-4 border-b border-slate-800">
+                <div class="flex items-center justify-between gap-4 pb-5 border-b border-slate-800">
                     <div class="flex items-center gap-3">
-                        <span class="px-3 py-1 text-xs font-bold rounded-xl ${slide.lec === 'lec1_2' ? 'bg-sky-500/20 text-sky-400' : 'bg-emerald-500/20 text-emerald-400'}">
+                        <span class="px-3.5 py-1.5 text-xs sm:text-sm font-bold rounded-xl ${slide.lec === 'lec1_2' ? 'bg-sky-500/20 text-sky-400' : 'bg-emerald-500/20 text-emerald-400'}">
                             ${slide.lec === 'lec1_2' ? 'محاضرة 1&2' : 'محاضرة 3'}
                         </span>
-                        <span class="px-3 py-1 text-xs font-bold rounded-xl bg-slate-800/80 text-slate-200">
+                        <span class="px-3.5 py-1.5 text-xs sm:text-sm font-bold rounded-xl bg-slate-800/90 text-slate-200">
                             سلايد ${slide.slideNum} من 37
                         </span>
-                        <span class="text-xs text-slate-400 font-mono">(${state.deckIndex + 1} / ${state.allSlides.length})</span>
+                        <span class="text-xs sm:text-sm text-slate-400 font-mono">(${state.deckIndex + 1} / ${state.allSlides.length})</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <button onclick="window.deckPrev()" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition flex items-center gap-1 shadow">
+                        <button onclick="window.deckPrev()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow">
                             السابق ⬅️
                         </button>
-                        <button onclick="window.deckNext()" class="px-3 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition flex items-center gap-1 shadow">
+                        <button onclick="window.deckNext()" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow">
                             التالي ➡️
                         </button>
                     </div>
                 </div>
 
                 <!-- Deck Body -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 my-6 items-center">
-                    <!-- Original Slide Large Image -->
-                    <div class="relative rounded-2xl overflow-hidden bg-black/30 border border-slate-800 cursor-pointer shadow-xl group" onclick="window.openLightboxBySlideId('${slide.id}')">
-                        <img src="${slide.image}" alt="${slide.titleEn}" class="w-full h-auto max-h-[420px] object-contain">
-                        <div class="absolute bottom-3 right-3 bg-slate-900/90 text-white text-[11px] px-2.5 py-1 rounded-lg border border-slate-700 shadow">
-                            انقر للتكبير 🔍
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 my-8 items-center">
+                    <!-- Original Slide Large Image (6 Cols) -->
+                    <div class="lg:col-span-6 relative rounded-2xl overflow-hidden bg-black/40 border border-slate-700/80 cursor-pointer shadow-2xl group flex items-center justify-center min-h-[380px] lg:min-h-[500px]" onclick="window.openLightboxBySlideId('${slide.id}')">
+                        <img src="${slide.image}" alt="${slide.titleEn}" class="w-full h-auto max-h-[540px] object-contain transition-transform duration-300 group-hover:scale-102">
+                        <div class="absolute bottom-3 right-3 bg-slate-900/90 text-white text-xs px-3 py-1.5 rounded-xl border border-slate-700 shadow-lg flex items-center gap-1.5">
+                            <span>🔍</span> انقر للتكبير
                         </div>
                     </div>
 
-                    <!-- Slide Details -->
-                    <div class="space-y-4">
+                    <!-- Slide Details (6 Cols) -->
+                    <div class="lg:col-span-6 space-y-5">
                         <div>
-                            <span class="text-xs text-blue-400 font-bold">${slide.categoryAr}</span>
-                            <h2 class="text-2xl font-black text-heading mt-1">${slide.titleAr}</h2>
-                            <div class="text-xs font-mono text-slate-400 mt-1">${slide.titleEn}</div>
+                            <span class="text-xs sm:text-sm text-blue-400 font-extrabold px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 inline-block mb-2">${slide.categoryAr}</span>
+                            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-heading leading-tight">${slide.titleAr}</h2>
+                            <div class="text-xs sm:text-sm font-mono text-slate-400 mt-1.5">${slide.titleEn}</div>
                         </div>
 
-                        <div class="p-4 rounded-2xl slang-callout shadow-sm">
-                            <div class="text-xs font-bold slang-callout-title mb-1.5 flex items-center gap-1.5">
-                                <span>💡</span> الشرح بالعامية (بالبلدي وبكل بساطة):
+                        <div class="p-5 sm:p-6 rounded-2xl slang-callout shadow-md">
+                            <div class="text-sm sm:text-base font-bold slang-callout-title mb-2 flex items-center gap-2">
+                                <span class="text-lg">💡</span> الشرح بالعامية (بالبلدي وبكل بساطة):
                             </div>
-                            <p class="text-sm slang-callout-text leading-relaxed font-normal">${slide.slangExplanation}</p>
+                            <p class="text-base sm:text-lg slang-callout-text leading-relaxed font-normal whitespace-pre-line">${slide.slangExplanation}</p>
                         </div>
 
-                        <div class="p-4 rounded-2xl example-callout shadow-sm">
-                            <div class="text-xs font-bold example-callout-title mb-1.5 flex items-center gap-1.5">
-                                <span>🚀</span> مثال واقعي:
+                        <div class="p-4 sm:p-5 rounded-2xl example-callout shadow-md">
+                            <div class="text-sm sm:text-base font-bold example-callout-title mb-2 flex items-center gap-2">
+                                <span class="text-lg">🚀</span> مثال واقعي:
                             </div>
-                            <p class="text-xs example-callout-text leading-relaxed font-normal">${slide.practicalExample}</p>
+                            <p class="text-sm sm:text-base example-callout-text leading-relaxed font-normal whitespace-pre-line">${slide.practicalExample}</p>
                         </div>
 
-                        <div class="p-3.5 themed-inner bg-slate-950 rounded-xl border border-slate-800 text-xs">
-                            <span class="font-bold text-amber-400">📝 نقطة امتحان:</span> 
-                            <span class="text-slate-300 font-normal">${slide.examTip}</span>
+                        <div class="p-4 themed-inner bg-slate-950 rounded-xl border border-slate-800 text-sm flex items-start gap-2 shadow-inner">
+                            <span class="font-bold text-amber-400 shrink-0 text-base">📝 نقطة امتحان:</span> 
+                            <span class="text-slate-200 font-normal leading-relaxed text-sm sm:text-base">${slide.examTip}</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Deck Bottom Progress Bar -->
-                <div class="w-full bg-slate-800/60 h-2 rounded-full overflow-hidden mt-6">
+                <div class="w-full bg-slate-800/60 h-2.5 rounded-full overflow-hidden mt-6">
                     <div class="bg-gradient-to-r from-blue-500 to-emerald-400 h-full transition-all duration-300" style="width: ${((state.deckIndex + 1) / state.allSlides.length) * 100}%"></div>
                 </div>
             </div>
