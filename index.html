@@ -18,60 +18,66 @@
 <body class="min-h-screen flex flex-col justify-between selection:bg-blue-500 selection:text-white transition-colors duration-300">
 
     <!-- Top Navigation Bar -->
-    <header class="sticky top-0 z-40 backdrop-blur-md border-b transition-all">
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2.5 sm:py-3.5 flex flex-wrap items-center justify-between gap-2.5 sm:gap-4">
+    <header class="sticky top-0 z-40 backdrop-blur-md border-b transition-all w-full max-w-full">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 sm:py-3 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-4">
             <!-- Brand & Course Meta -->
-            <div class="flex items-center gap-2.5 sm:gap-3">
-                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-lg sm:text-xl shadow-lg shadow-blue-500/20 shrink-0">
-                    🧠
-                </div>
-                <div>
-                    <div class="flex items-center gap-1.5 sm:gap-2">
-                        <span class="brand-badge text-[10px] sm:text-xs font-black tracking-wider px-1.5 sm:px-2 py-0.5 rounded-md border">
-                            CS413
-                        </span>
-                        <h1 class="brand-title text-sm sm:text-base md:text-lg font-black truncate max-w-[190px] sm:max-w-none">حل المشكلات واتخاذ القرار</h1>
+            <div class="flex items-center justify-between gap-2 w-full sm:w-auto">
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-base sm:text-xl shadow-lg shadow-blue-500/20 shrink-0">
+                        🧠
                     </div>
-                    <p class="brand-subtitle text-[11px] sm:text-xs truncate max-w-[220px] sm:max-w-none">جامعة طنطا - كلية الحاسبات والمعلومات | د. مصطفى العشري</p>
+                    <div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="brand-badge text-[10px] sm:text-xs font-black tracking-wider px-1.5 py-0.5 rounded border">
+                                CS413
+                            </span>
+                            <h1 class="brand-title text-xs sm:text-base md:text-lg font-black truncate max-w-[200px] sm:max-w-none">حل المشكلات واتخاذ القرار</h1>
+                        </div>
+                        <p class="brand-subtitle text-[10px] sm:text-xs truncate max-w-[230px] sm:max-w-none">د. مصطفى العشري | حاسبات طنطا</p>
+                    </div>
                 </div>
+                <!-- GitHub on mobile -->
+                <a href="https://github.com/M0hamedabohelal/PS" target="_blank" rel="noopener noreferrer" 
+                   class="github-link p-1.5 rounded-xl transition flex sm:hidden items-center text-xs font-bold shrink-0" title="عرض الكود على GitHub">
+                    <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                </a>
             </div>
 
-            <!-- Font Scale & Theme Toggles -->
-            <div class="flex items-center gap-1.5 sm:gap-3 flex-wrap">
-                <!-- Font Scale Adjuster -->
-                <div class="header-ctrl-box flex items-center p-0.5 sm:p-1 rounded-xl text-xs">
-                    <span class="ctrl-label text-[10px] sm:text-[11px] font-bold px-1 sm:px-1.5 hidden md:inline">الخط:</span>
-                    <button data-scale="sm" onclick="window.setFontScale('sm')" class="font-scale-btn px-1.5 sm:px-2 py-0.5 rounded text-[11px] sm:text-xs font-bold transition" title="خط صغير">A-</button>
-                    <button data-scale="md" onclick="window.setFontScale('md')" class="font-scale-btn px-1.5 sm:px-2 py-0.5 rounded text-[11px] sm:text-xs font-bold transition active-scale" title="خط قياسي">A</button>
-                    <button data-scale="lg" onclick="window.setFontScale('lg')" class="font-scale-btn px-1.5 sm:px-2 py-0.5 rounded text-[11px] sm:text-xs font-bold transition" title="خط مريح">A+</button>
-                    <button data-scale="xl" onclick="window.setFontScale('xl')" class="font-scale-btn px-1.5 sm:px-2 py-0.5 rounded text-[11px] sm:text-xs font-bold transition" title="خط كبير">A++</button>
-                </div>
-
+            <!-- Controls row on mobile, inline on desktop -->
+            <div class="flex items-center justify-between sm:justify-end gap-1.5 sm:gap-3 w-full sm:w-auto">
                 <!-- Theme Toggles -->
                 <div class="header-ctrl-box flex items-center p-0.5 sm:p-1 rounded-xl text-xs">
-                    <button data-theme="dark" class="theme-btn px-2 sm:px-2.5 py-1 rounded-lg transition flex items-center gap-1 text-[11px] sm:text-xs font-bold" title="داكن مريح للعين (Night Comfort)">
+                    <button data-theme="dark" class="theme-btn px-2 sm:px-2.5 py-1 rounded-lg transition flex items-center gap-1 text-[11px] sm:text-xs font-bold" title="داكن">
                         <span>🌙</span> <span class="hidden sm:inline">داكن</span>
                     </button>
-                    <button data-theme="sepia" class="theme-btn px-2 sm:px-2.5 py-1 rounded-lg transition flex items-center gap-1 text-[11px] sm:text-xs font-bold" title="نمط ورقي دافئ (Night Shift)">
+                    <button data-theme="sepia" class="theme-btn px-2 sm:px-2.5 py-1 rounded-lg transition flex items-center gap-1 text-[11px] sm:text-xs font-bold" title="دافئ">
                         <span>📜</span> <span class="hidden sm:inline">دافئ</span>
                     </button>
-                    <button data-theme="light" class="theme-btn px-2 sm:px-2.5 py-1 rounded-lg transition flex items-center gap-1 text-[11px] sm:text-xs font-bold" title="فاتح هادئ">
+                    <button data-theme="light" class="theme-btn px-2 sm:px-2.5 py-1 rounded-lg transition flex items-center gap-1 text-[11px] sm:text-xs font-bold" title="فاتح">
                         <span>☀️</span> <span class="hidden sm:inline">فاتح</span>
                     </button>
                 </div>
 
-                <!-- GitHub Repo Link -->
+                <!-- Font Scale Adjuster -->
+                <div class="header-ctrl-box flex items-center p-0.5 sm:p-1 rounded-xl text-xs">
+                    <button data-scale="sm" onclick="window.setFontScale('sm')" class="font-scale-btn px-2 py-0.5 rounded text-[11px] font-bold transition" title="خط صغير">A-</button>
+                    <button data-scale="md" onclick="window.setFontScale('md')" class="font-scale-btn px-2 py-0.5 rounded text-[11px] font-bold transition active-scale" title="خط قياسي">A</button>
+                    <button data-scale="lg" onclick="window.setFontScale('lg')" class="font-scale-btn px-2 py-0.5 rounded text-[11px] font-bold transition" title="خط مريح">A+</button>
+                    <button data-scale="xl" onclick="window.setFontScale('xl')" class="font-scale-btn px-2 py-0.5 rounded text-[11px] font-bold transition" title="خط كبير">A++</button>
+                </div>
+
+                <!-- GitHub on desktop -->
                 <a href="https://github.com/M0hamedabohelal/PS" target="_blank" rel="noopener noreferrer" 
-                   class="github-link p-1.5 sm:p-2 sm:px-3 rounded-xl transition flex items-center gap-1.5 text-[11px] sm:text-xs font-bold" title="عرض الكود على GitHub">
+                   class="github-link p-1.5 sm:p-2 sm:px-3 rounded-xl transition hidden sm:flex items-center gap-1.5 text-xs font-bold" title="عرض الكود على GitHub">
                     <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                    <span class="hidden md:inline">GitHub</span>
+                    <span>GitHub</span>
                 </a>
             </div>
         </div>
     </header>
 
     <!-- Hero / Welcome Banner -->
-    <section class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 sm:pt-8 pb-3 sm:pb-4">
+    <section class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 sm:pt-8 pb-3 sm:pb-4 overflow-hidden">
         <div class="hero-banner relative overflow-hidden rounded-2xl sm:rounded-3xl p-4 sm:p-7 lg:p-10 shadow-xl transition-all">
             <div class="relative z-10 max-w-3xl space-y-2.5 sm:space-y-3">
                 <div class="hero-tag inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold">
@@ -112,63 +118,67 @@
     </section>
 
     <!-- Search & Filters Bar -->
-    <section id="searchFilterSection" class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-2 sm:pt-4">
-        <div class="filter-container rounded-2xl p-3.5 sm:p-5 shadow-sm space-y-3 sm:space-y-4">
+    <section id="searchFilterSection" class="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-2 sm:pt-4 overflow-hidden">
+        <div class="filter-container rounded-2xl p-3 sm:p-5 shadow-sm space-y-2.5 sm:space-y-4 w-full max-w-full min-w-0">
             <!-- Search Bar -->
-            <div class="relative">
-                <input type="text" id="globalSearchInput" placeholder="ابحث في أي سلايد (بالعربي أو الإنجليزي: مثل STRIPS, Gemba, 5 Whys, باريتو, Blocks World)..." 
-                       class="search-input w-full rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 pl-9 sm:pl-10 text-xs sm:text-sm focus:outline-none transition shadow-inner">
-                <span class="absolute left-3 top-3 text-slate-400 text-sm">🔍</span>
+            <div class="relative w-full min-w-0">
+                <input type="text" id="globalSearchInput" placeholder="ابحث في أي سلايد (مثل STRIPS, Gemba, 5 Whys, باريتو)..." 
+                       class="search-input w-full rounded-xl px-3.5 sm:px-4 py-2 sm:py-3 pl-9 sm:pl-10 text-xs sm:text-sm focus:outline-none transition shadow-inner">
+                <span class="absolute left-3 top-2.5 sm:top-3.5 text-slate-400 text-sm">🔍</span>
             </div>
 
             <!-- Filters Grid -->
-            <div class="flex flex-wrap items-center justify-between gap-2.5 sm:gap-4 pt-1">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 pt-1 w-full min-w-0">
                 <!-- Lecture Selector -->
-                <div class="flex items-center gap-1 sm:gap-1.5 flex-wrap">
+                <div class="flex items-center gap-1 sm:gap-1.5 flex-wrap w-full sm:w-auto">
                     <span class="text-xs font-bold filter-label ml-1 shrink-0">المحاضرة:</span>
-                    <button data-lec="all" onclick="window.setLectureFilter('all')" class="lec-filter-btn active-filter filter-pill px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-xs font-bold transition">
+                    <button data-lec="all" onclick="window.setLectureFilter('all')" class="lec-filter-btn active-filter filter-pill px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-xs font-bold transition">
                         الكل (35)
                     </button>
-                    <button data-lec="lec1_2" onclick="window.setLectureFilter('lec1_2')" class="lec-filter-btn filter-pill px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-xs font-bold transition">
-                        المحاضرة 1 & 2 (28)
+                    <button data-lec="lec1_2" onclick="window.setLectureFilter('lec1_2')" class="lec-filter-btn filter-pill px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-xs font-bold transition">
+                        محاضرة 1 & 2 (28)
                     </button>
-                    <button data-lec="lec3" onclick="window.setLectureFilter('lec3')" class="lec-filter-btn filter-pill px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-xs font-bold transition">
-                        المحاضرة 3 (7)
+                    <button data-lec="lec3" onclick="window.setLectureFilter('lec3')" class="lec-filter-btn filter-pill px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-xs font-bold transition">
+                        محاضرة 3 (7)
                     </button>
                 </div>
 
-                <!-- Slide counter badge -->
-                <div class="flex items-center gap-2">
-                    <span class="text-xs filter-label hidden sm:inline">عدد النتائج:</span>
-                    <span id="slidesCountBadge" class="results-badge px-2.5 py-1 rounded-lg font-bold text-xs">
-                        35 سلايد
-                    </span>
-                    <button onclick="window.resetFilters()" class="text-xs reset-btn underline transition">
+                <!-- Slide counter badge & reset -->
+                <div class="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto pt-1 sm:pt-0 border-t sm:border-t-0 tabs-border">
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-xs filter-label">النتائج:</span>
+                        <span id="slidesCountBadge" class="results-badge px-2 py-0.5 rounded-md sm:rounded-lg font-bold text-xs">
+                            35 سلايد
+                        </span>
+                    </div>
+                    <button onclick="window.resetFilters()" class="text-xs reset-btn underline transition font-medium">
                         إلغاء الفلاتر
                     </button>
                 </div>
             </div>
 
             <!-- Category Topics Filter -->
-            <div class="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
-                <span class="filter-label font-bold shrink-0 ml-1">الموضوع:</span>
-                <button data-cat="all" onclick="window.setCategoryFilter('all')" class="cat-filter-btn active-cat filter-pill px-2.5 py-1 rounded-lg shrink-0">الكل</button>
-                <button data-cat="Problem Statement" onclick="window.setCategoryFilter('Problem Statement')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">صياغة المشكلة</button>
-                <button data-cat="Problem Solving Steps" onclick="window.setCategoryFilter('Problem Solving Steps')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">خطوات الحل و Gemba</button>
-                <button data-cat="AI Planning" onclick="window.setCategoryFilter('AI Planning')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">التخطيط بالذكاء الاصطناعي</button>
-                <button data-cat="Blocks World" onclick="window.setCategoryFilter('Blocks World')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">عالم المكعبات</button>
-                <button data-cat="STRIPS Representation" onclick="window.setCategoryFilter('STRIPS Representation')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">نظام STRIPS والـ Triples</button>
-                <button data-cat="Decision Making & Skills" onclick="window.setCategoryFilter('Decision Making & Skills')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">صنع القرار والمهارات</button>
-                <button data-cat="Techniques & Tools" onclick="window.setCategoryFilter('Techniques & Tools')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">تقنيات الحل الـ 14</button>
-                <button data-cat="Mistakes to Avoid" onclick="window.setCategoryFilter('Mistakes to Avoid')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">الأخطاء القاتلة الخمسة</button>
+            <div class="w-full max-w-full min-w-0 overflow-x-auto pb-1 scrollbar-none">
+                <div class="inline-flex items-center gap-1.5 text-xs whitespace-nowrap">
+                    <span class="filter-label font-bold shrink-0 ml-1">الموضوع:</span>
+                    <button data-cat="all" onclick="window.setCategoryFilter('all')" class="cat-filter-btn active-cat filter-pill px-2.5 py-1 rounded-lg shrink-0">الكل</button>
+                    <button data-cat="Problem Statement" onclick="window.setCategoryFilter('Problem Statement')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">صياغة المشكلة</button>
+                    <button data-cat="Problem Solving Steps" onclick="window.setCategoryFilter('Problem Solving Steps')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">خطوات الحل و Gemba</button>
+                    <button data-cat="AI Planning" onclick="window.setCategoryFilter('AI Planning')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">التخطيط بالذكاء الاصطناعي</button>
+                    <button data-cat="Blocks World" onclick="window.setCategoryFilter('Blocks World')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">عالم المكعبات</button>
+                    <button data-cat="STRIPS Representation" onclick="window.setCategoryFilter('STRIPS Representation')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">نظام STRIPS والـ Triples</button>
+                    <button data-cat="Decision Making & Skills" onclick="window.setCategoryFilter('Decision Making & Skills')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">صنع القرار والمهارات</button>
+                    <button data-cat="Techniques & Tools" onclick="window.setCategoryFilter('Techniques & Tools')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">تقنيات الحل الـ 14</button>
+                    <button data-cat="Mistakes to Avoid" onclick="window.setCategoryFilter('Mistakes to Avoid')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">الأخطاء القاتلة الخمسة</button>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Main Dynamic Presentation Deck Mount -->
-    <main class="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 py-4 sm:py-8 flex-grow">
-        <div id="deckViewContainer">
-            <div id="deckViewContent">
+    <main class="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-8 flex-grow overflow-hidden">
+        <div id="deckViewContainer" class="w-full max-w-full min-w-0">
+            <div id="deckViewContent" class="w-full max-w-full min-w-0">
                 <!-- Dynamically Rendered by app.js -->
             </div>
         </div>

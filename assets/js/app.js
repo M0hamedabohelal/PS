@@ -186,32 +186,34 @@ document.addEventListener('DOMContentLoaded', () => {
         const slide = state.filteredSlides[state.deckIndex];
 
         deckContainer.innerHTML = `
-            <div class="themed-card rounded-2xl sm:rounded-3xl p-4 sm:p-7 lg:p-10 shadow-xl max-w-7xl mx-auto">
+            <div class="themed-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-7 lg:p-10 shadow-xl max-w-7xl mx-auto w-full min-w-0 overflow-hidden">
                 <!-- Deck Controls Top -->
-                <div class="flex flex-wrap items-center justify-between gap-2.5 sm:gap-4 pb-3.5 sm:pb-5 border-b tabs-border">
-                    <div class="flex items-center gap-1.5 sm:gap-3 flex-wrap">
-                        <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 text-[11px] sm:text-sm font-bold rounded-xl ${slide.lec === 'lec1_2' ? 'badge-lec12' : 'badge-lec3'}">
-                            ${slide.lec === 'lec1_2' ? 'محاضرة 1&2' : 'محاضرة 3'}
-                        </span>
-                        <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 text-[11px] sm:text-sm font-bold rounded-xl badge-slide-num">
-                            سلايد ${slide.slideNum}
-                        </span>
-                        <span class="text-xs sm:text-sm text-subtitle font-mono">(${state.deckIndex + 1} من ${state.filteredSlides.length})</span>
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-4 pb-3 sm:pb-5 border-b tabs-border w-full min-w-0">
+                    <div class="flex items-center justify-between sm:justify-start gap-1.5 sm:gap-3 w-full sm:w-auto">
+                        <div class="flex items-center gap-1.5 sm:gap-2">
+                            <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 text-xs sm:text-sm font-bold rounded-lg sm:rounded-xl shrink-0 ${slide.lec === 'lec1_2' ? 'badge-lec12' : 'badge-lec3'}">
+                                ${slide.lec === 'lec1_2' ? 'محاضرة 1&2' : 'محاضرة 3'}
+                            </span>
+                            <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 text-xs sm:text-sm font-bold rounded-lg sm:rounded-xl badge-slide-num shrink-0">
+                                سلايد ${slide.slideNum}
+                            </span>
+                        </div>
+                        <span class="text-xs sm:text-sm text-subtitle font-mono shrink-0 whitespace-nowrap font-bold">(${state.deckIndex + 1} من ${state.filteredSlides.length})</span>
                     </div>
-                    <div class="flex items-center gap-1.5 sm:gap-2">
-                        <button onclick="window.deckPrev()" class="deck-btn-prev px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1 shadow">
+                    <div class="flex items-center gap-2 w-full sm:w-auto">
+                        <button onclick="window.deckPrev()" class="deck-btn-prev flex-1 sm:flex-initial px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center justify-center gap-1 shadow">
                             السابق ⬅️
                         </button>
-                        <button onclick="window.deckNext()" class="deck-btn-next px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold transition flex items-center gap-1 shadow">
+                        <button onclick="window.deckNext()" class="deck-btn-next flex-1 sm:flex-initial px-3 sm:px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold transition flex items-center justify-center gap-1 shadow">
                             التالي ➡️
                         </button>
                     </div>
                 </div>
 
                 <!-- Deck Body -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 my-5 sm:my-8 items-start">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 my-5 sm:my-8 items-start w-full min-w-0">
                     <!-- Original Slide Large Image (6 Cols) -->
-                    <div class="lg:col-span-6 relative rounded-2xl overflow-hidden themed-inner border tabs-border cursor-pointer shadow-xl group flex items-center justify-center slide-img-container" onclick="window.openLightboxBySlideId('${slide.id}')">
+                    <div class="lg:col-span-6 relative rounded-2xl overflow-hidden themed-inner border tabs-border cursor-pointer shadow-xl group flex items-center justify-center slide-img-container w-full min-w-0" onclick="window.openLightboxBySlideId('${slide.id}')">
                         <img src="${slide.image}" alt="${slide.titleEn}" class="w-full h-auto max-h-[320px] sm:max-h-[440px] lg:max-h-[540px] object-contain transition-transform duration-300 group-hover:scale-102">
                         <div class="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 bg-slate-900/90 text-white text-[11px] sm:text-xs px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl border border-slate-700 shadow-lg flex items-center gap-1.5">
                             <span>🔍</span> انقر للتكبير
@@ -219,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
 
                     <!-- Slide Details (6 Cols) -->
-                    <div class="lg:col-span-6 space-y-4 sm:space-y-6">
+                    <div class="lg:col-span-6 space-y-4 sm:space-y-6 w-full min-w-0">
                         <div>
                             <span class="text-[11px] sm:text-sm font-extrabold px-2.5 sm:px-3 py-1 rounded-full badge-category inline-block mb-1.5 sm:mb-2">${slide.categoryAr}</span>
                             <h2 class="text-xl sm:text-2xl lg:text-3xl font-black text-heading leading-tight">${slide.titleAr}</h2>
@@ -261,16 +263,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
 
                 <!-- Bottom Navigation Controls for mobile and quick reading -->
-                <div class="pt-3.5 sm:pt-4 border-t tabs-border flex flex-wrap items-center justify-between gap-3 mt-4 sm:mt-6">
-                    <div class="flex items-center gap-2">
-                        <button onclick="window.deckPrev()" class="deck-btn-prev px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow">
+                <div class="pt-3 sm:pt-4 border-t tabs-border flex items-center justify-between gap-2 mt-4 sm:mt-6 w-full min-w-0">
+                    <div class="flex items-center gap-2 flex-1 sm:flex-initial">
+                        <button onclick="window.deckPrev()" class="deck-btn-prev flex-1 sm:flex-initial px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center justify-center gap-1.5 shadow">
                             السابق ⬅️
                         </button>
-                        <button onclick="window.deckNext()" class="deck-btn-next px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow">
+                        <button onclick="window.deckNext()" class="deck-btn-next flex-1 sm:flex-initial px-3.5 sm:px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold transition flex items-center justify-center gap-1.5 shadow">
                             التالي ➡️
                         </button>
                     </div>
-                    <div class="text-xs text-subtitle font-mono">
+                    <div class="text-xs text-subtitle font-mono shrink-0 whitespace-nowrap">
                         سلايد <strong class="text-heading">${state.deckIndex + 1}</strong> من ${state.filteredSlides.length}
                     </div>
                 </div>
