@@ -128,23 +128,22 @@
             </div>
 
             <!-- Filters Grid -->
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 pt-1 w-full min-w-0">
-                <!-- Lecture Selector -->
-                <div class="flex items-center gap-1 sm:gap-1.5 flex-wrap w-full sm:w-auto">
-                    <span class="text-xs font-bold filter-label ml-1 shrink-0">المحاضرة:</span>
-                    <button data-lec="all" onclick="window.setLectureFilter('all')" class="lec-filter-btn active-filter filter-pill px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-xs font-bold transition">
+            <div class="space-y-2.5 w-full min-w-0">
+                <!-- Lecture Selector as Grid on Mobile, Flex on Desktop -->
+                <div class="grid grid-cols-3 gap-1.5 sm:flex sm:items-center sm:gap-2 w-full">
+                    <button data-lec="all" onclick="window.setLectureFilter('all')" class="lec-filter-btn active-filter filter-pill py-1.5 sm:py-1.5 sm:px-3 rounded-lg sm:rounded-xl text-xs font-bold transition flex items-center justify-center">
                         الكل (35)
                     </button>
-                    <button data-lec="lec1_2" onclick="window.setLectureFilter('lec1_2')" class="lec-filter-btn filter-pill px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-xs font-bold transition">
-                        محاضرة 1 & 2 (28)
+                    <button data-lec="lec1_2" onclick="window.setLectureFilter('lec1_2')" class="lec-filter-btn filter-pill py-1.5 sm:py-1.5 sm:px-3 rounded-lg sm:rounded-xl text-xs font-bold transition flex items-center justify-center">
+                        محاضرة 1&2 (28)
                     </button>
-                    <button data-lec="lec3" onclick="window.setLectureFilter('lec3')" class="lec-filter-btn filter-pill px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-xs font-bold transition">
+                    <button data-lec="lec3" onclick="window.setLectureFilter('lec3')" class="lec-filter-btn filter-pill py-1.5 sm:py-1.5 sm:px-3 rounded-lg sm:rounded-xl text-xs font-bold transition flex items-center justify-center">
                         محاضرة 3 (7)
                     </button>
                 </div>
 
                 <!-- Slide counter badge & reset -->
-                <div class="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto pt-1 sm:pt-0 border-t sm:border-t-0 tabs-border">
+                <div class="flex items-center justify-between gap-2 w-full pt-1.5 border-t tabs-border">
                     <div class="flex items-center gap-1.5">
                         <span class="text-xs filter-label">النتائج:</span>
                         <span id="slidesCountBadge" class="results-badge px-2 py-0.5 rounded-md sm:rounded-lg font-bold text-xs">
@@ -155,21 +154,23 @@
                         إلغاء الفلاتر
                     </button>
                 </div>
-            </div>
 
-            <!-- Category Topics Filter -->
-            <div class="w-full max-w-full min-w-0 overflow-x-auto pb-1 scrollbar-none">
-                <div class="inline-flex items-center gap-1.5 text-xs whitespace-nowrap">
-                    <span class="filter-label font-bold shrink-0 ml-1">الموضوع:</span>
-                    <button data-cat="all" onclick="window.setCategoryFilter('all')" class="cat-filter-btn active-cat filter-pill px-2.5 py-1 rounded-lg shrink-0">الكل</button>
-                    <button data-cat="Problem Statement" onclick="window.setCategoryFilter('Problem Statement')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">صياغة المشكلة</button>
-                    <button data-cat="Problem Solving Steps" onclick="window.setCategoryFilter('Problem Solving Steps')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">خطوات الحل و Gemba</button>
-                    <button data-cat="AI Planning" onclick="window.setCategoryFilter('AI Planning')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">التخطيط بالذكاء الاصطناعي</button>
-                    <button data-cat="Blocks World" onclick="window.setCategoryFilter('Blocks World')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">عالم المكعبات</button>
-                    <button data-cat="STRIPS Representation" onclick="window.setCategoryFilter('STRIPS Representation')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">نظام STRIPS والـ Triples</button>
-                    <button data-cat="Decision Making & Skills" onclick="window.setCategoryFilter('Decision Making & Skills')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">صنع القرار والمهارات</button>
-                    <button data-cat="Techniques & Tools" onclick="window.setCategoryFilter('Techniques & Tools')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">تقنيات الحل الـ 14</button>
-                    <button data-cat="Mistakes to Avoid" onclick="window.setCategoryFilter('Mistakes to Avoid')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">الأخطاء القاتلة الخمسة</button>
+                <!-- Category Topics Filter -->
+                <div class="flex items-center gap-1.5 w-full min-w-0 pt-0.5">
+                    <span class="filter-label font-bold shrink-0 text-xs ml-0.5">الموضوع:</span>
+                    <div class="flex-grow overflow-x-auto scrollbar-none py-0.5 min-w-0">
+                        <div class="inline-flex items-center gap-1.5 text-xs whitespace-nowrap">
+                            <button data-cat="all" onclick="window.setCategoryFilter('all')" class="cat-filter-btn active-cat filter-pill px-2.5 py-1 rounded-lg shrink-0">الكل</button>
+                            <button data-cat="Problem Statement" onclick="window.setCategoryFilter('Problem Statement')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">صياغة المشكلة</button>
+                            <button data-cat="Problem Solving Steps" onclick="window.setCategoryFilter('Problem Solving Steps')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">خطوات الحل و Gemba</button>
+                            <button data-cat="AI Planning" onclick="window.setCategoryFilter('AI Planning')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">التخطيط بالذكاء الاصطناعي</button>
+                            <button data-cat="Blocks World" onclick="window.setCategoryFilter('Blocks World')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">عالم المكعبات</button>
+                            <button data-cat="STRIPS Representation" onclick="window.setCategoryFilter('STRIPS Representation')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">نظام STRIPS والـ Triples</button>
+                            <button data-cat="Decision Making & Skills" onclick="window.setCategoryFilter('Decision Making & Skills')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">صنع القرار والمهارات</button>
+                            <button data-cat="Techniques & Tools" onclick="window.setCategoryFilter('Techniques & Tools')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">تقنيات الحل الـ 14</button>
+                            <button data-cat="Mistakes to Avoid" onclick="window.setCategoryFilter('Mistakes to Avoid')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">الأخطاء القاتلة الخمسة</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -538,6 +538,26 @@ header {
 .filter-container {
     background-color: var(--filter-container-bg) !important;
     border: 1.5px solid var(--filter-container-border) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+.themed-card {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--card-border) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+.hero-banner {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
 }
 .search-input {
     background-color: var(--filter-input-bg) !important;
