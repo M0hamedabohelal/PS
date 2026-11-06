@@ -11,7 +11,7 @@
     --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* Base font size scaling (Restored to original comfortable scale) */
+/* Base font size scaling with fully responsive breakpoints */
 html, :root { 
     font-size: 18px; 
 }
@@ -20,12 +20,33 @@ html.font-scale-md { font-size: 18px; }
 html.font-scale-lg { font-size: 20px; }
 html.font-scale-xl { font-size: 23px; }
 
+@media (max-width: 640px) {
+    html, :root { 
+        font-size: 15px; 
+    }
+    html.font-scale-sm { font-size: 13.5px; }
+    html.font-scale-md { font-size: 15px; }
+    html.font-scale-lg { font-size: 17px; }
+    html.font-scale-xl { font-size: 19px; }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    html, :root { 
+        font-size: 16.5px; 
+    }
+    html.font-scale-sm { font-size: 14.5px; }
+    html.font-scale-md { font-size: 16.5px; }
+    html.font-scale-lg { font-size: 18.5px; }
+    html.font-scale-xl { font-size: 21px; }
+}
+
 body {
     font-family: var(--font-arabic);
     line-height: 1.8;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -743,4 +764,32 @@ header {
 }
 .slide-card:hover {
     transform: translateY(-4px);
+}
+
+/* Responsive Slide Image Container */
+.slide-img-container {
+    min-height: 220px;
+    max-height: 340px;
+}
+@media (min-width: 640px) {
+    .slide-img-container {
+        min-height: 340px;
+        max-height: 440px;
+    }
+}
+@media (min-width: 1024px) {
+    .slide-img-container {
+        min-height: 460px;
+        max-height: 560px;
+    }
+}
+
+/* Touch-friendly Mobile Scrolling */
+.scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
 }
