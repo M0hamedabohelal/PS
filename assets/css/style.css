@@ -1,138 +1,251 @@
-/* CSS Stylesheet with Eye-Comfort Themes for CS413 Platform */
-@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap');
+/* ========================================================
+   CS413 Eye-Comfort Stylesheet & Typography System
+   Fonts: IBM Plex Sans Arabic + Tajawal + Plus Jakarta Sans
+   ======================================================== */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-    --font-sans: 'Alexandria', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-arabic: 'IBM Plex Sans Arabic', 'Tajawal', sans-serif;
+    --font-heading: 'Tajawal', 'IBM Plex Sans Arabic', sans-serif;
+    --font-latin: 'Plus Jakarta Sans', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+    --font-scale: 1rem;
 }
 
+/* Font scale classes */
+html.font-scale-sm { font-size: 14px; }
+html.font-scale-md { font-size: 16px; }
+html.font-scale-lg { font-size: 18px; }
+html.font-scale-xl { font-size: 20px; }
+
 body {
-    font-family: var(--font-sans);
-    line-height: 1.75;
+    font-family: var(--font-arabic);
+    line-height: 1.85;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.015em;
+}
+
+.font-mono {
+    font-family: var(--font-mono);
 }
 
 /* ========================================================
-   THEME 1: Soft Dark Mode (Default - Midnight Navy, Eye Comfort)
+   THEME 1: 🌙 Soft Dark Mode (Midnight Navy - Eye Comfort)
    ======================================================== */
 .theme-dark {
-    --bg-main: #0B1120;
+    --bg-page: #0B1120;
     --bg-card: #131E32;
-    --bg-elevated: #1B2942;
-    --border-color: #243552;
-    --text-primary: #F1F5F9;
-    --text-secondary: #94A3B8;
-    --text-muted: #64748B;
-    --accent-blue: #38BDF8;
-    --accent-amber: #FBBF24;
-    --accent-emerald: #34D399;
+    --bg-card-sub: #0E1726;
+    --border-main: #1E293B;
+    --border-sub: #27354A;
+    --text-title: #F1F5F9;
+    --text-body: #CBD5E1;
+    --text-muted: #94A3B8;
+    --slang-box-bg: rgba(245, 158, 11, 0.08);
+    --slang-box-border: rgba(245, 158, 11, 0.25);
+    --slang-box-title: #FBBF24;
+    --slang-box-text: #E2E8F0;
+    --example-box-bg: rgba(16, 185, 129, 0.08);
+    --example-box-border: rgba(16, 185, 129, 0.25);
+    --example-box-title: #34D399;
+    --example-box-text: #E2E8F0;
 }
 
 .theme-dark body {
-    background-color: var(--bg-main);
-    color: var(--text-primary);
+    background-color: var(--bg-page);
+    color: var(--text-body);
+}
+
+.theme-dark .themed-card {
+    background-color: var(--bg-card) !important;
+    border-color: var(--border-main) !important;
+    color: var(--text-body);
+}
+
+.theme-dark .themed-inner {
+    background-color: var(--bg-card-sub) !important;
+    border-color: var(--border-sub) !important;
+}
+
+.theme-dark .text-heading {
+    color: var(--text-title) !important;
 }
 
 /* ========================================================
-   THEME 2: Eye-Comfort Sepia Mode (Night Shift / Warm Amber Paper)
+   THEME 2: 📜 Warm Sepia Mode (Night Shift / Warm Amber Paper)
    ======================================================== */
 .theme-sepia {
-    --bg-main: #231F1C;
-    --bg-card: #2E2824;
-    --bg-elevated: #3A332E;
-    --border-color: #4C433C;
-    --text-primary: #F5EFEB;
-    --text-secondary: #D4C7BC;
-    --text-muted: #9E8F82;
-    --accent-blue: #7CB5EC;
-    --accent-amber: #E5A93C;
-    --accent-emerald: #6DBE91;
+    --bg-page: #231C18;
+    --bg-card: #2E2520;
+    --bg-card-sub: #261E1A;
+    --border-main: #42362E;
+    --border-sub: #524339;
+    --text-title: #F6EFE9;
+    --text-body: #D9CEB9;
+    --text-muted: #A39688;
+    --slang-box-bg: rgba(229, 169, 60, 0.12);
+    --slang-box-border: rgba(229, 169, 60, 0.35);
+    --slang-box-title: #E5A93C;
+    --slang-box-text: #F4EDE4;
+    --example-box-bg: rgba(109, 190, 145, 0.12);
+    --example-box-border: rgba(109, 190, 145, 0.35);
+    --example-box-title: #6DBE91;
+    --example-box-text: #F4EDE4;
 }
 
 .theme-sepia body {
-    background-color: var(--bg-main);
-    color: var(--text-primary);
+    background-color: var(--bg-page);
+    color: var(--text-body);
 }
 
-.theme-sepia .bg-slate-900 {
+.theme-sepia header {
+    background-color: rgba(35, 28, 24, 0.9) !important;
+    border-color: var(--border-main) !important;
+}
+
+.theme-sepia .bg-slate-900,
+.theme-sepia .themed-card,
+.theme-sepia .slide-card {
     background-color: var(--bg-card) !important;
+    border-color: var(--border-main) !important;
+    color: var(--text-body) !important;
 }
 
-.theme-sepia .bg-slate-950 {
-    background-color: #1A1715 !important;
+.theme-sepia .bg-slate-950,
+.theme-sepia .themed-inner {
+    background-color: var(--bg-card-sub) !important;
+    border-color: var(--border-sub) !important;
 }
 
-.theme-sepia .border-slate-800 {
-    border-color: var(--border-color) !important;
+.theme-sepia .border-slate-800,
+.theme-sepia .border-slate-800\/80 {
+    border-color: var(--border-main) !important;
+}
+
+.theme-sepia .text-white,
+.theme-sepia .text-heading {
+    color: var(--text-title) !important;
+}
+
+.theme-sepia .text-slate-200,
+.theme-sepia .text-slate-300 {
+    color: var(--text-body) !important;
+}
+
+.theme-sepia .text-slate-400 {
+    color: var(--text-muted) !important;
 }
 
 /* ========================================================
-   THEME 3: Gentle Soft Light Mode
+   THEME 3: ☀️ Gentle Soft Light Mode (Soft Cream Gray)
    ======================================================== */
 .theme-light {
-    --bg-main: #F8FAFC;
+    --bg-page: #F8FAFC;
     --bg-card: #FFFFFF;
-    --bg-elevated: #F1F5F9;
-    --border-color: #E2E8F0;
-    --text-primary: #0F172A;
-    --text-secondary: #475569;
+    --bg-card-sub: #F1F5F9;
+    --border-main: #E2E8F0;
+    --border-sub: #CBD5E1;
+    --text-title: #0F172A;
+    --text-body: #334155;
     --text-muted: #64748B;
-    --accent-blue: #0284C7;
-    --accent-amber: #D97706;
-    --accent-emerald: #059669;
+    --slang-box-bg: #FFFBEB;
+    --slang-box-border: #FCD34D;
+    --slang-box-title: #B45309;
+    --slang-box-text: #1E293B;
+    --example-box-bg: #ECFDF5;
+    --example-box-border: #A7F3D0;
+    --example-box-title: #047857;
+    --example-box-text: #1E293B;
 }
 
 .theme-light body {
-    background-color: var(--bg-main);
-    color: var(--text-primary);
+    background-color: var(--bg-page);
+    color: var(--text-body);
 }
 
-.theme-light .bg-slate-900 {
-    background-color: #FFFFFF !important;
-    color: #0F172A !important;
-}
-
-.theme-light .bg-slate-950 {
-    background-color: #F8FAFC !important;
-    color: #0F172A !important;
-}
-
-.theme-light .border-slate-800 {
+.theme-light header {
+    background-color: rgba(255, 255, 255, 0.9) !important;
     border-color: #E2E8F0 !important;
 }
 
-.theme-light .text-white {
-    color: #0F172A !important;
+.theme-light .bg-slate-900,
+.theme-light .themed-card,
+.theme-light .slide-card {
+    background-color: var(--bg-card) !important;
+    border-color: var(--border-main) !important;
+    color: var(--text-body) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
-.theme-light .text-slate-200 {
-    color: #1E293B !important;
+.theme-light .bg-slate-950,
+.theme-light .themed-inner {
+    background-color: var(--bg-card-sub) !important;
+    border-color: var(--border-sub) !important;
 }
 
+.theme-light .border-slate-800,
+.theme-light .border-slate-800\/80 {
+    border-color: var(--border-main) !important;
+}
+
+.theme-light .text-white,
+.theme-light .text-heading {
+    color: var(--text-title) !important;
+}
+
+.theme-light .text-slate-100,
+.theme-light .text-slate-200,
 .theme-light .text-slate-300 {
-    color: #334155 !important;
+    color: var(--text-body) !important;
 }
 
 .theme-light .text-slate-400 {
-    color: #64748B !important;
+    color: var(--text-muted) !important;
 }
 
-/* Custom Scrollbar */
+/* Custom Callout Boxes */
+.slang-callout {
+    background-color: var(--slang-box-bg) !important;
+    border: 1px solid var(--slang-box-border) !important;
+}
+.slang-callout-title {
+    color: var(--slang-box-title) !important;
+}
+.slang-callout-text {
+    color: var(--slang-box-text) !important;
+}
+
+.example-callout {
+    background-color: var(--example-box-bg) !important;
+    border: 1px solid var(--example-box-border) !important;
+}
+.example-callout-title {
+    color: var(--example-box-title) !important;
+}
+.example-callout-text {
+    color: var(--example-box-text) !important;
+}
+
+/* Custom Scrollbars */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
 }
 ::-webkit-scrollbar-track {
-    background: rgba(15, 23, 42, 0.6);
+    background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: rgba(148, 163, 184, 0.3);
     border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+    background: rgba(148, 163, 184, 0.5);
 }
 
 /* Navigation Tabs & Active Badges */
@@ -149,14 +262,15 @@ body {
 }
 
 .active-cat {
-    background: #4338CA !important;
+    background: #4F46E5 !important;
     color: #FFFFFF !important;
     border-color: #6366F1 !important;
 }
 
 .active-theme {
-    ring: 2px solid #38BDF8;
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+    outline: 2px solid #38BDF8;
+    outline-offset: 1px;
+    background-color: rgba(56, 189, 248, 0.15) !important;
 }
 
 /* Slide Cards Animation */
@@ -165,10 +279,5 @@ body {
 }
 
 .slide-card:hover {
-    transform: translateY(-4px);
-}
-
-/* Code and formula font */
-.font-mono {
-    font-family: var(--font-mono);
+    transform: translateY(-3px);
 }
