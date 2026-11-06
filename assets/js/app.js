@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let html = '';
             if (intro) {
-                html += `<div class="text-base sm:text-lg font-bold text-heading mb-3 leading-relaxed opacity-95">${intro}</div>`;
+                html += `<div class="text-base sm:text-lg font-bold text-heading mb-3 leading-relaxed">${intro}</div>`;
             }
 
             html += '<div class="space-y-3 mt-2">';
@@ -86,16 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         itemDesc = body.substring(colonIdx + 1).trim();
                     }
 
-                    const badgeBg = isAmber 
-                        ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' 
-                        : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+                    const badgeClass = isAmber ? 'badge-slang' : 'badge-example';
 
                     html += `
-                        <div class="formatted-item p-3.5 sm:p-4 rounded-xl flex items-start gap-3.5 shadow-sm transition hover:border-slate-500">
-                            <span class="shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center font-black text-sm sm:text-base ${badgeBg}">${num}</span>
+                        <div class="formatted-item p-3.5 sm:p-4 rounded-xl flex items-start gap-3.5 shadow-sm transition">
+                            <span class="shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center font-black text-sm sm:text-base ${badgeClass}">${num}</span>
                             <div class="flex-1 text-sm sm:text-base leading-relaxed">
                                 ${itemTitle ? `<strong class="font-bold text-heading block mb-1 text-base sm:text-lg">${itemTitle}:</strong>` : ''}
-                                <span class="opacity-95 leading-relaxed">${itemDesc}</span>
+                                <span class="leading-relaxed opacity-95">${itemDesc}</span>
                             </div>
                         </div>
                     `;
@@ -115,8 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const clean = line.replace(/^[\-•]\s*/, '').trim();
                 html += `
                     <div class="flex items-start gap-3 text-sm sm:text-base leading-relaxed">
-                        <span class="text-sky-400 mt-1 shrink-0 text-base">🔹</span>
-                        <span class="opacity-95 leading-relaxed">${clean}</span>
+                        <span class="text-blue-500 mt-1 shrink-0 text-base">🔹</span>
+                        <span class="leading-relaxed opacity-95">${clean}</span>
                     </div>
                 `;
             });
@@ -200,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="col-span-full py-16 text-center">
                     <div class="text-4xl mb-3">🔍</div>
                     <h3 class="text-lg font-bold text-heading">لم يتم العثور على أي سلايد مطابقة لبحثك</h3>
-                    <p class="text-sm text-slate-400 mt-1">جرب كلمات بحث أخرى أو قم بإلغاء الفلاتر المحددة</p>
+                    <p class="text-sm text-subtitle mt-1">جرب كلمات بحث أخرى أو قم بإلغاء الفلاتر المحددة</p>
                     <button onclick="window.resetFilters()" class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl transition shadow">
                         إعادة ضبط الفلاتر والبحث
                     </button>
@@ -210,26 +208,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         container.innerHTML = state.filteredSlides.map((slide) => `
-            <div class="slide-card themed-card bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between" id="${slide.id}">
+            <div class="slide-card themed-card rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between" id="${slide.id}">
                 <div>
                     <!-- Card Top Header -->
-                    <div class="p-5 pb-3 border-b border-slate-800 flex items-center justify-between gap-2">
+                    <div class="p-5 pb-3 border-b tabs-border flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
-                            <span class="px-2.5 py-1 text-[11px] font-bold rounded-lg ${slide.lec === 'lec1_2' ? 'bg-sky-500/20 text-sky-400 border border-sky-500/30' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'}">
+                            <span class="px-2.5 py-1 text-[11px] font-bold rounded-lg ${slide.lec === 'lec1_2' ? 'badge-lec12' : 'badge-lec3'}">
                                 ${slide.lec === 'lec1_2' ? 'محاضرة 1&2' : 'محاضرة 3'}
                             </span>
-                            <span class="px-2.5 py-1 text-[11px] font-bold rounded-lg bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                            <span class="px-2.5 py-1 text-[11px] font-bold rounded-lg badge-slide-num">
                                 سلايد ${slide.slideNum}
                             </span>
                         </div>
-                        <span class="text-xs text-slate-400 font-medium px-2 py-0.5 rounded bg-slate-800/60">
+                        <span class="text-xs font-bold px-2.5 py-0.5 rounded-lg badge-category">
                             ${slide.categoryAr}
                         </span>
                     </div>
 
                     <!-- Slide Image with Lightbox trigger -->
-                    <div class="relative group cursor-pointer overflow-hidden themed-inner bg-slate-950" onclick="window.openLightboxBySlideId('${slide.id}')">
-                        <img src="${slide.image}" alt="${slide.titleEn}" class="w-full h-56 sm:h-60 object-contain bg-black/20 group-hover:scale-102 transition duration-300" loading="lazy">
+                    <div class="relative group cursor-pointer overflow-hidden themed-inner border-b tabs-border" onclick="window.openLightboxBySlideId('${slide.id}')">
+                        <img src="${slide.image}" alt="${slide.titleEn}" class="w-full h-56 sm:h-60 object-contain group-hover:scale-102 transition duration-300" loading="lazy">
                         <div class="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition flex items-center justify-center backdrop-blur-[1px]">
                             <span class="px-3.5 py-2 rounded-xl bg-slate-900/95 text-white text-xs font-bold shadow-lg border border-slate-700 flex items-center gap-1.5">
                                 <span>🔍</span> تكبير السلايد الأصلية
@@ -239,8 +237,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     <!-- Titles -->
                     <div class="p-5 pb-2">
-                        <h3 class="text-xl sm:text-2xl font-bold text-heading leading-snug">${slide.titleAr}</h3>
-                        <div class="text-xs sm:text-sm font-mono text-slate-400 mt-1" dir="ltr">${slide.titleEn}</div>
+                        <h3 class="text-xl sm:text-2xl font-black text-heading leading-snug">${slide.titleAr}</h3>
+                        <div class="text-xs sm:text-sm font-mono text-subtitle mt-1" dir="ltr">${slide.titleEn}</div>
                     </div>
 
                     <!-- Explanations in Egyptian Slang -->
@@ -269,14 +267,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     <!-- Collapsible Original English Content -->
                     <div class="px-5 pb-4">
-                        <details class="group themed-inner bg-slate-950 rounded-xl border border-slate-800 text-xs sm:text-sm">
-                            <summary class="p-3 font-medium text-slate-400 cursor-pointer list-none flex items-center justify-between select-none">
+                        <details class="group themed-inner rounded-xl border tabs-border text-xs sm:text-sm">
+                            <summary class="p-3 font-medium text-subtitle cursor-pointer list-none flex items-center justify-between select-none">
                                 <span class="flex items-center gap-1.5">
                                     <span>📄</span> النص الأصلي للسلايد بالإنجليزية
                                 </span>
-                                <span class="text-slate-500 group-open:rotate-180 transition">▼</span>
+                                <span class="text-subtitle group-open:rotate-180 transition">▼</span>
                             </summary>
-                            <div class="p-3 pt-1 text-slate-300 font-mono text-xs sm:text-sm space-y-1.5 border-t border-slate-800" dir="ltr">
+                            <div class="p-3 pt-1 text-subtitle font-mono text-xs sm:text-sm space-y-1.5 border-t tabs-border" dir="ltr">
                                 ${slide.contentOriginal.map(c => `<div>• ${c}</div>`).join('')}
                             </div>
                         </details>
@@ -284,14 +282,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
 
                 <!-- Card Footer (Takeaway & Exam Tip) -->
-                <div class="p-5 pt-3 themed-inner bg-slate-950/70 border-t border-slate-800 space-y-2.5">
-                    <div class="text-xs sm:text-sm text-sky-400 flex items-start gap-2">
-                        <span class="font-bold shrink-0">🎯 كبسولة:</span>
-                        <span class="text-slate-200">${slide.keyTakeaway}</span>
+                <div class="p-5 pt-3 themed-inner border-t tabs-border space-y-2.5">
+                    <div class="text-xs sm:text-sm flex items-start gap-2 p-2.5 rounded-xl capsule-callout">
+                        <span class="font-bold shrink-0 text-blue-500">🎯 كبسولة:</span>
+                        <span class="opacity-95 leading-relaxed">${slide.keyTakeaway}</span>
                     </div>
-                    <div class="text-xs sm:text-sm text-amber-400 flex items-start gap-2">
-                        <span class="font-bold shrink-0">📝 في الامتحان:</span>
-                        <span class="text-slate-200">${slide.examTip}</span>
+                    <div class="text-xs sm:text-sm flex items-start gap-2 p-2.5 rounded-xl exam-callout">
+                        <span class="font-bold shrink-0 text-amber-500">📝 في الامتحان:</span>
+                        <span class="opacity-95 leading-relaxed">${slide.examTip}</span>
                     </div>
                 </div>
             </div>
@@ -309,20 +307,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const slide = state.allSlides[state.deckIndex];
 
         deckContainer.innerHTML = `
-            <div class="themed-card bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl max-w-7xl mx-auto">
+            <div class="themed-card rounded-3xl p-6 sm:p-10 shadow-2xl max-w-7xl mx-auto">
                 <!-- Deck Controls Top -->
-                <div class="flex items-center justify-between gap-4 pb-5 border-b border-slate-800">
+                <div class="flex items-center justify-between gap-4 pb-5 border-b tabs-border">
                     <div class="flex items-center gap-3">
-                        <span class="px-3.5 py-1.5 text-xs sm:text-sm font-bold rounded-xl ${slide.lec === 'lec1_2' ? 'bg-sky-500/20 text-sky-400 border border-sky-500/30' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'}">
+                        <span class="px-3.5 py-1.5 text-xs sm:text-sm font-bold rounded-xl ${slide.lec === 'lec1_2' ? 'badge-lec12' : 'badge-lec3'}">
                             ${slide.lec === 'lec1_2' ? 'محاضرة 1&2' : 'محاضرة 3'}
                         </span>
-                        <span class="px-3.5 py-1.5 text-xs sm:text-sm font-bold rounded-xl bg-slate-800/90 text-slate-200">
+                        <span class="px-3.5 py-1.5 text-xs sm:text-sm font-bold rounded-xl badge-slide-num">
                             سلايد ${slide.slideNum}
                         </span>
-                        <span class="text-xs sm:text-sm text-slate-400 font-mono">(${state.deckIndex + 1} من ${state.allSlides.length})</span>
+                        <span class="text-xs sm:text-sm text-subtitle font-mono">(${state.deckIndex + 1} من ${state.allSlides.length})</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <button onclick="window.deckPrev()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow">
+                        <button onclick="window.deckPrev()" class="deck-btn-prev px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow">
                             السابق ⬅️
                         </button>
                         <button onclick="window.deckNext()" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow">
@@ -334,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <!-- Deck Body -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 my-8 items-start">
                     <!-- Original Slide Large Image (6 Cols) -->
-                    <div class="lg:col-span-6 relative rounded-2xl overflow-hidden bg-black/40 border border-slate-700/80 cursor-pointer shadow-2xl group flex items-center justify-center min-h-[380px] lg:min-h-[500px]" onclick="window.openLightboxBySlideId('${slide.id}')">
+                    <div class="lg:col-span-6 relative rounded-2xl overflow-hidden themed-inner border tabs-border cursor-pointer shadow-xl group flex items-center justify-center min-h-[380px] lg:min-h-[500px]" onclick="window.openLightboxBySlideId('${slide.id}')">
                         <img src="${slide.image}" alt="${slide.titleEn}" class="w-full h-auto max-h-[560px] object-contain transition-transform duration-300 group-hover:scale-102">
                         <div class="absolute bottom-3 right-3 bg-slate-900/90 text-white text-xs px-3 py-1.5 rounded-xl border border-slate-700 shadow-lg flex items-center gap-1.5">
                             <span>🔍</span> انقر للتكبير
@@ -344,9 +342,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <!-- Slide Details (6 Cols) -->
                     <div class="lg:col-span-6 space-y-6">
                         <div>
-                            <span class="text-xs sm:text-sm text-blue-400 font-extrabold px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 inline-block mb-2">${slide.categoryAr}</span>
+                            <span class="text-xs sm:text-sm font-extrabold px-3 py-1 rounded-full badge-category inline-block mb-2">${slide.categoryAr}</span>
                             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-heading leading-tight">${slide.titleAr}</h2>
-                            <div class="text-sm sm:text-base font-mono text-slate-400 mt-2" dir="ltr">${slide.titleEn}</div>
+                            <div class="text-sm sm:text-base font-mono text-subtitle mt-2" dir="ltr">${slide.titleEn}</div>
                         </div>
 
                         <!-- Slang Explanation Box -->
@@ -370,21 +368,21 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
 
                         <!-- Exam Tip -->
-                        <div class="p-4 sm:p-5 themed-inner bg-slate-950 rounded-2xl border border-slate-800 text-sm sm:text-base flex items-start gap-3 shadow-inner">
-                            <span class="font-bold text-amber-400 shrink-0 text-lg">📝 نقطة امتحان:</span> 
-                            <span class="text-slate-100 font-medium leading-relaxed text-sm sm:text-base">${slide.examTip}</span>
+                        <div class="p-4 sm:p-5 rounded-2xl exam-callout text-sm sm:text-base flex items-start gap-3 shadow-sm">
+                            <span class="font-bold text-amber-500 shrink-0 text-lg">📝 نقطة امتحان:</span> 
+                            <span class="leading-relaxed font-medium">${slide.examTip}</span>
                         </div>
 
                         <!-- Key Takeaway -->
-                        <div class="p-4 sm:p-5 themed-inner bg-slate-950/80 rounded-2xl border border-slate-800 text-sm sm:text-base flex items-start gap-3 shadow-inner">
-                            <span class="font-bold text-sky-400 shrink-0 text-lg">🎯 كبسولة سريعة:</span> 
-                            <span class="text-slate-200 font-medium leading-relaxed text-sm sm:text-base">${slide.keyTakeaway}</span>
+                        <div class="p-4 sm:p-5 rounded-2xl capsule-callout text-sm sm:text-base flex items-start gap-3 shadow-sm">
+                            <span class="font-bold text-blue-500 shrink-0 text-lg">🎯 كبسولة سريعة:</span> 
+                            <span class="leading-relaxed font-medium">${slide.keyTakeaway}</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Deck Bottom Progress Bar -->
-                <div class="w-full bg-slate-800/60 h-2.5 rounded-full overflow-hidden mt-6">
+                <div class="w-full deck-progress-track h-2.5 rounded-full overflow-hidden mt-6">
                     <div class="bg-gradient-to-r from-blue-500 to-emerald-400 h-full transition-all duration-300" style="width: ${((state.deckIndex + 1) / state.allSlides.length) * 100}%"></div>
                 </div>
             </div>

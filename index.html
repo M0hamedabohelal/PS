@@ -8,71 +8,62 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#0B1120',
-                        darkCard: '#131E32',
-                        darkElevated: '#1B2942'
-                    }
-                }
-            }
+            darkMode: 'class'
         }
     </script>
     <!-- Custom Styles & Themes -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
 </head>
-<body class="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-blue-500 selection:text-white">
+<body class="min-h-screen flex flex-col justify-between selection:bg-blue-500 selection:text-white transition-colors duration-300">
 
     <!-- Top Navigation Bar -->
-    <header class="sticky top-0 z-40 bg-slate-950/85 backdrop-blur-md border-b border-slate-800/80 transition-all">
+    <header class="sticky top-0 z-40 backdrop-blur-md border-b transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
             <!-- Brand & Course Meta -->
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-xl shadow-lg shadow-blue-500/20">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-xl shadow-lg shadow-blue-500/20 shrink-0">
                     🧠
                 </div>
                 <div>
                     <div class="flex items-center gap-2">
-                        <span class="text-xs font-black tracking-wider px-2 py-0.5 rounded-md bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                        <span class="brand-badge text-xs font-black tracking-wider px-2 py-0.5 rounded-md border">
                             CS413
                         </span>
-                        <h1 class="text-base sm:text-lg font-black text-white">حل المشكلات واتخاذ القرار</h1>
+                        <h1 class="brand-title text-base sm:text-lg font-black">حل المشكلات واتخاذ القرار</h1>
                     </div>
-                    <p class="text-xs text-slate-400">جامعة طنطا - كلية الحاسبات والمعلومات | د. مصطفى العشري</p>
+                    <p class="brand-subtitle text-xs">جامعة طنطا - كلية الحاسبات والمعلومات | د. مصطفى العشري</p>
                 </div>
             </div>
 
-            <!-- Font Scale & Theme Toggles (Eye Comfort Controls) -->
+            <!-- Font Scale & Theme Toggles -->
             <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
                 <!-- Font Scale Adjuster -->
-                <div class="flex items-center p-1 rounded-xl bg-slate-900 border border-slate-800 text-xs">
-                    <span class="text-[11px] text-slate-400 font-bold px-1.5 hidden md:inline">الخط:</span>
-                    <button data-scale="sm" onclick="window.setFontScale('sm')" class="font-scale-btn px-2 py-0.5 rounded text-slate-300 hover:text-white text-xs font-bold transition" title="خط صغير">A-</button>
-                    <button data-scale="md" onclick="window.setFontScale('md')" class="font-scale-btn px-2 py-0.5 rounded text-slate-300 hover:text-white text-xs font-bold transition active-scale" title="خط قياسي">A</button>
-                    <button data-scale="lg" onclick="window.setFontScale('lg')" class="font-scale-btn px-2 py-0.5 rounded text-slate-300 hover:text-white text-xs font-bold transition" title="خط مريح">A+</button>
-                    <button data-scale="xl" onclick="window.setFontScale('xl')" class="font-scale-btn px-2 py-0.5 rounded text-slate-300 hover:text-white text-xs font-bold transition" title="خط كبير">A++</button>
+                <div class="header-ctrl-box flex items-center p-1 rounded-xl text-xs">
+                    <span class="ctrl-label text-[11px] font-bold px-1.5 hidden md:inline">الخط:</span>
+                    <button data-scale="sm" onclick="window.setFontScale('sm')" class="font-scale-btn px-2 py-0.5 rounded text-xs font-bold transition" title="خط صغير">A-</button>
+                    <button data-scale="md" onclick="window.setFontScale('md')" class="font-scale-btn px-2 py-0.5 rounded text-xs font-bold transition active-scale" title="خط قياسي">A</button>
+                    <button data-scale="lg" onclick="window.setFontScale('lg')" class="font-scale-btn px-2 py-0.5 rounded text-xs font-bold transition" title="خط مريح">A+</button>
+                    <button data-scale="xl" onclick="window.setFontScale('xl')" class="font-scale-btn px-2 py-0.5 rounded text-xs font-bold transition" title="خط كبير">A++</button>
                 </div>
 
                 <!-- Theme Toggles -->
-                <div class="flex items-center p-1 rounded-xl bg-slate-900 border border-slate-800 text-xs">
-                    <button data-theme="dark" class="theme-btn px-2.5 py-1 rounded-lg text-slate-300 hover:text-white transition flex items-center gap-1" title="داكن مريح للعين (Night Comfort)">
+                <div class="header-ctrl-box flex items-center p-1 rounded-xl text-xs">
+                    <button data-theme="dark" class="theme-btn px-2.5 py-1 rounded-lg transition flex items-center gap-1.5 text-xs font-bold" title="داكن مريح للعين (Night Comfort)">
                         <span>🌙</span> <span class="hidden sm:inline">داكن مريح</span>
                     </button>
-                    <button data-theme="sepia" class="theme-btn px-2.5 py-1 rounded-lg text-slate-300 hover:text-white transition flex items-center gap-1" title="نمط ورقي دافئ (Night Shift)">
+                    <button data-theme="sepia" class="theme-btn px-2.5 py-1 rounded-lg transition flex items-center gap-1.5 text-xs font-bold" title="نمط ورقي دافئ (Night Shift)">
                         <span>📜</span> <span class="hidden sm:inline">دافئ (سيبيا)</span>
                     </button>
-                    <button data-theme="light" class="theme-btn px-2.5 py-1 rounded-lg text-slate-300 hover:text-white transition flex items-center gap-1" title="فاتح ناصع">
+                    <button data-theme="light" class="theme-btn px-2.5 py-1 rounded-lg transition flex items-center gap-1.5 text-xs font-bold" title="فاتح هادئ">
                         <span>☀️</span> <span class="hidden sm:inline">فاتح</span>
                     </button>
                 </div>
 
                 <!-- GitHub Repo Link -->
                 <a href="https://github.com/M0hamedabohelal/PS" target="_blank" rel="noopener noreferrer" 
-                   class="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition flex items-center gap-1.5 text-xs font-bold" title="عرض الكود على GitHub">
-                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                   class="github-link p-2 px-3 rounded-xl transition flex items-center gap-1.5 text-xs font-bold" title="عرض الكود على GitHub">
+                    <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                     <span class="hidden md:inline">GitHub</span>
                 </a>
             </div>
@@ -81,35 +72,35 @@
 
     <!-- Hero / Welcome Banner -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
-        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 border border-blue-900/40 p-6 sm:p-10 shadow-2xl">
+        <div class="hero-banner relative overflow-hidden rounded-3xl p-6 sm:p-10 shadow-xl transition-all">
             <div class="relative z-10 max-w-3xl space-y-3">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/30 text-xs font-bold">
+                <div class="hero-tag inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold">
                     <span>✨</span> منصة تعليمية تفاعلية شاملة لجميع سلايدات المقرر
                 </div>
-                <h2 class="text-2xl sm:text-4xl font-black text-white tracking-tight leading-tight">
-                    شرح مريح للعين <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-emerald-400">بالعامية المصرية</span> وأمثلة تفاعلية حية
+                <h2 class="hero-title text-2xl sm:text-4xl font-black tracking-tight leading-tight">
+                    شرح مريح للعين <span class="hero-title-accent font-black">بالعامية المصرية</span> وأمثلة تفاعلية حية
                 </h2>
-                <p class="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+                <p class="hero-desc text-sm sm:text-base leading-relaxed font-normal">
                     تمت تغطية الـ 35 سلايد بالكامل من المحاضرات (1 & 2 و 3) بدون إغفال أي تفصيلة أو معادلة! من صياغة المشكلة وقاعدة الـ 5 Ws مروراً بنظام STRIPS وتخطيط الروبوتات في الذكاء الاصطناعي وحتى تقنيات الحل الـ 14 وتجنب الأخطاء القاتلة.
                 </p>
 
                 <!-- Course Stats -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4">
-                    <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800">
-                        <div class="text-2xl font-black text-blue-400" id="statSlidesCount">35</div>
-                        <div class="text-xs text-slate-400 font-medium">سلايد كاملة ومصورة</div>
+                    <div class="hero-stat-card p-3.5 rounded-2xl">
+                        <div class="text-2xl font-black text-blue-500" id="statSlidesCount">35</div>
+                        <div class="hero-stat-label text-xs font-medium">سلايد كاملة ومصورة</div>
                     </div>
-                    <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800">
-                        <div class="text-2xl font-black text-emerald-400">100%</div>
-                        <div class="text-xs text-slate-400 font-medium">شرح بالعامية وأمثلة</div>
+                    <div class="hero-stat-card p-3.5 rounded-2xl">
+                        <div class="text-2xl font-black text-emerald-500">100%</div>
+                        <div class="hero-stat-label text-xs font-medium">شرح بالعامية وأمثلة</div>
                     </div>
-                    <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800">
-                        <div class="text-2xl font-black text-indigo-400">14</div>
-                        <div class="text-xs text-slate-400 font-medium">تقنية حل مشكلات</div>
+                    <div class="hero-stat-card p-3.5 rounded-2xl">
+                        <div class="text-2xl font-black text-indigo-500">14</div>
+                        <div class="hero-stat-label text-xs font-medium">تقنية حل مشكلات</div>
                     </div>
-                    <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800">
-                        <div class="text-2xl font-black text-amber-400">100%</div>
-                        <div class="text-xs text-slate-400 font-medium">تغطية شاملة للمقرر</div>
+                    <div class="hero-stat-card p-3.5 rounded-2xl">
+                        <div class="text-2xl font-black text-amber-500">100%</div>
+                        <div class="hero-stat-label text-xs font-medium">تغطية شاملة للمقرر</div>
                     </div>
                 </div>
             </div>
@@ -122,49 +113,49 @@
 
     <!-- Navigation View Mode Tabs -->
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-        <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-slate-800">
-            <button data-mode="cards" class="nav-tab active-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 transition flex items-center gap-2 whitespace-nowrap">
-                <span>🗂️</span> عرض البطاقات والشرح الكامل
-            </button>
-            <button data-mode="deck" class="nav-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+        <div class="tabs-border flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none border-b">
+            <button data-mode="deck" class="nav-tab active-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition flex items-center gap-2 whitespace-nowrap">
                 <span>🖥️</span> وضع العرض التقديمي (سلايد بسلايد)
+            </button>
+            <button data-mode="cards" class="nav-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition flex items-center gap-2 whitespace-nowrap">
+                <span>🗂️</span> عرض البطاقات والشرح الكامل
             </button>
         </div>
     </nav>
 
-    <!-- Search & Filters Bar (Active in Cards Mode) -->
+    <!-- Search & Filters Bar -->
     <section id="searchFilterSection" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-lg space-y-4">
+        <div class="filter-container rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
             <!-- Search Bar -->
             <div class="relative">
                 <input type="text" id="globalSearchInput" placeholder="ابحث في أي سلايد (بالعربي أو الإنجليزي: مثل STRIPS, Gemba, 5 Whys, باريتو, Blocks World, الأخطاء الخمسة)..." 
-                       class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 pl-10 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition shadow-inner">
-                <span class="absolute left-3 top-3.5 text-slate-500 text-sm">🔍</span>
+                       class="search-input w-full rounded-xl px-4 py-3 pl-10 text-sm focus:outline-none transition shadow-inner">
+                <span class="absolute left-3 top-3.5 text-slate-400 text-sm">🔍</span>
             </div>
 
             <!-- Filters Grid -->
             <div class="flex flex-wrap items-center justify-between gap-4 pt-1">
                 <!-- Lecture Selector -->
                 <div class="flex items-center gap-1.5 flex-wrap">
-                    <span class="text-xs font-bold text-slate-400 ml-1">المحاضرة:</span>
-                    <button data-lec="all" onclick="window.setLectureFilter('all')" class="lec-filter-btn active-filter px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 bg-slate-800 text-slate-200 transition">
+                    <span class="text-xs font-bold filter-label ml-1">المحاضرة:</span>
+                    <button data-lec="all" onclick="window.setLectureFilter('all')" class="lec-filter-btn active-filter filter-pill px-3 py-1.5 rounded-xl text-xs font-bold transition">
                         الكل (35)
                     </button>
-                    <button data-lec="lec1_2" onclick="window.setLectureFilter('lec1_2')" class="lec-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 transition">
+                    <button data-lec="lec1_2" onclick="window.setLectureFilter('lec1_2')" class="lec-filter-btn filter-pill px-3 py-1.5 rounded-xl text-xs font-bold transition">
                         المحاضرة 1 & 2 (28 سلايد)
                     </button>
-                    <button data-lec="lec3" onclick="window.setLectureFilter('lec3')" class="lec-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 transition">
+                    <button data-lec="lec3" onclick="window.setLectureFilter('lec3')" class="lec-filter-btn filter-pill px-3 py-1.5 rounded-xl text-xs font-bold transition">
                         المحاضرة 3 (7 سلايدات)
                     </button>
                 </div>
 
                 <!-- Slide counter badge -->
                 <div class="flex items-center gap-2">
-                    <span class="text-xs text-slate-400">عدد النتائج:</span>
-                    <span id="slidesCountBadge" class="px-2.5 py-1 rounded-lg bg-blue-500/20 text-blue-400 font-bold text-xs border border-blue-500/30">
+                    <span class="text-xs filter-label">عدد النتائج:</span>
+                    <span id="slidesCountBadge" class="results-badge px-2.5 py-1 rounded-lg font-bold text-xs">
                         35 سلايد
                     </span>
-                    <button onclick="window.resetFilters()" class="text-xs text-slate-400 hover:text-white underline transition">
+                    <button onclick="window.resetFilters()" class="text-xs reset-btn underline transition">
                         إلغاء الفلاتر
                     </button>
                 </div>
@@ -172,16 +163,16 @@
 
             <!-- Category Topics Filter -->
             <div class="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
-                <span class="text-slate-400 font-bold shrink-0 ml-1">الموضوع:</span>
-                <button data-cat="all" onclick="window.setCategoryFilter('all')" class="cat-filter-btn active-cat px-2.5 py-1 rounded-lg border border-slate-700 bg-slate-800 text-slate-200 shrink-0">الكل</button>
-                <button data-cat="Problem Statement" onclick="window.setCategoryFilter('Problem Statement')" class="cat-filter-btn px-2.5 py-1 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 shrink-0">صياغة المشكلة</button>
-                <button data-cat="Problem Solving Steps" onclick="window.setCategoryFilter('Problem Solving Steps')" class="cat-filter-btn px-2.5 py-1 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 shrink-0">خطوات الحل و Gemba</button>
-                <button data-cat="AI Planning" onclick="window.setCategoryFilter('AI Planning')" class="cat-filter-btn px-2.5 py-1 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 shrink-0">التخطيط بالذكاء الاصطناعي</button>
-                <button data-cat="Blocks World" onclick="window.setCategoryFilter('Blocks World')" class="cat-filter-btn px-2.5 py-1 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 shrink-0">عالم المكعبات</button>
-                <button data-cat="STRIPS Representation" onclick="window.setCategoryFilter('STRIPS Representation')" class="cat-filter-btn px-2.5 py-1 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 shrink-0">نظام STRIPS والـ Triples</button>
-                <button data-cat="Decision Making & Skills" onclick="window.setCategoryFilter('Decision Making & Skills')" class="cat-filter-btn px-2.5 py-1 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 shrink-0">صنع القرار والمهارات</button>
-                <button data-cat="Techniques & Tools" onclick="window.setCategoryFilter('Techniques & Tools')" class="cat-filter-btn px-2.5 py-1 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 shrink-0">تقنيات الحل الـ 14</button>
-                <button data-cat="Mistakes to Avoid" onclick="window.setCategoryFilter('Mistakes to Avoid')" class="cat-filter-btn px-2.5 py-1 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 shrink-0">الأخطاء القاتلة الخمسة</button>
+                <span class="filter-label font-bold shrink-0 ml-1">الموضوع:</span>
+                <button data-cat="all" onclick="window.setCategoryFilter('all')" class="cat-filter-btn active-cat filter-pill px-2.5 py-1 rounded-lg shrink-0">الكل</button>
+                <button data-cat="Problem Statement" onclick="window.setCategoryFilter('Problem Statement')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">صياغة المشكلة</button>
+                <button data-cat="Problem Solving Steps" onclick="window.setCategoryFilter('Problem Solving Steps')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">خطوات الحل و Gemba</button>
+                <button data-cat="AI Planning" onclick="window.setCategoryFilter('AI Planning')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">التخطيط بالذكاء الاصطناعي</button>
+                <button data-cat="Blocks World" onclick="window.setCategoryFilter('Blocks World')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">عالم المكعبات</button>
+                <button data-cat="STRIPS Representation" onclick="window.setCategoryFilter('STRIPS Representation')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">نظام STRIPS والـ Triples</button>
+                <button data-cat="Decision Making & Skills" onclick="window.setCategoryFilter('Decision Making & Skills')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">صنع القرار والمهارات</button>
+                <button data-cat="Techniques & Tools" onclick="window.setCategoryFilter('Techniques & Tools')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">تقنيات الحل الـ 14</button>
+                <button data-cat="Mistakes to Avoid" onclick="window.setCategoryFilter('Mistakes to Avoid')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">الأخطاء القاتلة الخمسة</button>
             </div>
         </div>
     </section>
@@ -190,14 +181,14 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
 
         <!-- VIEW 1: Cards View Grid -->
-        <div id="cardsViewContainer">
+        <div id="cardsViewContainer" class="hidden">
             <div id="cardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Dynamically Rendered by app.js -->
             </div>
         </div>
 
         <!-- VIEW 2: Presentation Deck View -->
-        <div id="deckViewContainer" class="hidden">
+        <div id="deckViewContainer">
             <div id="deckViewContent">
                 <!-- Dynamically Rendered by app.js -->
             </div>
@@ -214,10 +205,10 @@
                 <div id="lightboxNum" class="text-xs text-slate-400 mt-0.5"></div>
             </div>
             <div class="flex items-center gap-2">
-                <button onclick="window.lightboxPrev()" class="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-bold transition">
+                <button onclick="window.lightboxPrev()" class="p-2 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-bold transition">
                     السابق (⬅️)
                 </button>
-                <button onclick="window.lightboxNext()" class="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-bold transition">
+                <button onclick="window.lightboxNext()" class="p-2 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-bold transition">
                     التالي (➡️)
                 </button>
                 <button onclick="window.closeLightbox()" class="p-2 px-3 rounded-xl bg-red-600/20 hover:bg-red-600/40 text-red-300 text-xs font-black transition border border-red-500/30">
@@ -238,16 +229,16 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-slate-900 py-8 mt-12 text-center text-xs text-slate-500 space-y-2">
+    <footer class="border-t py-8 mt-12 text-center text-xs space-y-2 tabs-border">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="text-right">
-                <div class="font-bold text-slate-400">CS413: Problem Solving and Decision Making</div>
-                <div>جامعة طنطا - كلية الحاسبات والمعلومات | د. مصطفى العشري</div>
+                <div class="font-bold brand-title">CS413: Problem Solving and Decision Making</div>
+                <div class="brand-subtitle">جامعة طنطا - كلية الحاسبات والمعلومات | د. مصطفى العشري</div>
             </div>
-            <div class="flex items-center gap-4 text-slate-400">
-                <a href="#searchFilterSection" class="hover:text-white transition">أعلى الصفحة</a>
+            <div class="flex items-center gap-4 brand-subtitle">
+                <a href="#searchFilterSection" class="hover:underline transition">أعلى الصفحة</a>
                 <span>•</span>
-                <a href="https://github.com/M0hamedabohelal/PS" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">مستودع GitHub</a>
+                <a href="https://github.com/M0hamedabohelal/PS" target="_blank" rel="noopener noreferrer" class="hover:underline transition">مستودع GitHub</a>
             </div>
         </div>
     </footer>
