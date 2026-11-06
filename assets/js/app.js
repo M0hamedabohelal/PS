@@ -236,6 +236,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (state.deckIndex >= state.filteredSlides.length) state.deckIndex = state.filteredSlides.length - 1;
 
         const slide = state.filteredSlides[state.deckIndex];
+        const lecBadgeClass = slide.lec === 'lec1_2' ? 'badge-lec12' : (slide.lec === 'lec3' ? 'badge-lec3' : 'badge-ch2');
+        const lecBadgeText = slide.lec === 'lec1_2' ? 'محاضرة 1&2' : (slide.lec === 'lec3' ? 'محاضرة 3' : 'شابتر 2: تحليل المشكلات');
+        const slideLabel = slide.lec === 'ch2' ? `صفحة ${slide.slideNum}` : `سلايد ${slide.slideNum}`;
 
         deckContainer.innerHTML = `
             <div class="themed-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-7 lg:p-10 shadow-xl max-w-7xl mx-auto w-full min-w-0 overflow-hidden">
@@ -243,11 +246,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-4 pb-3 sm:pb-5 border-b tabs-border w-full min-w-0">
                     <div class="flex items-center justify-between sm:justify-start gap-1.5 sm:gap-3 w-full sm:w-auto">
                         <div class="flex items-center gap-1.5 sm:gap-2">
-                            <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 text-xs sm:text-sm font-bold rounded-lg sm:rounded-xl shrink-0 ${slide.lec === 'lec1_2' ? 'badge-lec12' : 'badge-lec3'}">
-                                ${slide.lec === 'lec1_2' ? 'محاضرة 1&2' : 'محاضرة 3'}
+                            <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 text-xs sm:text-sm font-bold rounded-lg sm:rounded-xl shrink-0 ${lecBadgeClass}">
+                                ${lecBadgeText}
                             </span>
                             <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 text-xs sm:text-sm font-bold rounded-lg sm:rounded-xl badge-slide-num shrink-0">
-                                سلايد ${slide.slideNum}
+                                ${slideLabel}
                             </span>
                         </div>
                         <span class="text-xs sm:text-sm text-subtitle font-mono shrink-0 whitespace-nowrap font-bold">(${state.deckIndex + 1} من ${state.filteredSlides.length})</span>
@@ -354,7 +357,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const num = document.getElementById('lightboxNum');
         if (img) img.src = slide.image;
         if (title) title.innerText = `${slide.titleAr} (${slide.titleEn})`;
-        if (num) num.innerText = `سلايد ${slide.slideNum} (${state.lightboxIndex + 1} من ${state.allSlides.length})`;
+        const slideLabel = slide.lec === 'ch2' ? `صفحة ${slide.slideNum}` : `سلايد ${slide.slideNum}`;
+        if (num) num.innerText = `${slide.lecTitle} - ${slideLabel} (${state.lightboxIndex + 1} من ${state.allSlides.length})`;
     }
 
     window.closeLightbox = function() {

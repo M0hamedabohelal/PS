@@ -81,33 +81,40 @@
         <div class="hero-banner relative overflow-hidden rounded-2xl sm:rounded-3xl p-4 sm:p-7 lg:p-10 shadow-xl transition-all">
             <div class="relative z-10 max-w-3xl space-y-2.5 sm:space-y-3">
                 <div class="hero-tag inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold">
-                    <span>✨</span> منصة تعليمية تفاعلية شاملة لجميع سلايدات المقرر
+                    <span>✨</span> منصة تعليمية تفاعلية شاملة لجميع محاضرات وشباتر المقرر
                 </div>
                 <h2 class="hero-title text-xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug sm:leading-tight">
                     شرح مريح للعين <span class="hero-title-accent font-black">بالعامية المصرية</span> وأمثلة تفاعلية حية
                 </h2>
                 <p class="hero-desc text-xs sm:text-sm md:text-base leading-relaxed font-normal">
-                    تمت تغطية الـ 35 سلايد بالكامل من المحاضرات (1 & 2 و 3) بدون إغفال أي تفصيلة أو معادلة! من صياغة المشكلة وقاعدة الـ 5 Ws مروراً بنظام STRIPS وتخطيط الروبوتات في الذكاء الاصطناعي وحتى تقنيات الحل الـ 14 وتجنب الأخطاء القاتلة.
+                    تمت تغطية الـ 64 سلايد وصفحة بالكامل من المحاضرات (1 & 2 و 3) وملف شابتر 2 (تحليل المشكلات وأصحاب المصلحة) بدون إغفال أي تفصيلة أو مفهوم! يشمل صياغة المشكلة، تحليل السبب الجذري (RCA)، تقنية 5 Whys، مخطط هيكل السمكة وإيشيكاوا والـ 6Ms، نظام STRIPS، والفرق الجوهري بين المساهمين وأصحاب المصلحة ومصفوفة Power/Interest.
                 </p>
 
                 <!-- Course Stats -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 pt-2 sm:pt-4">
                     <div class="hero-stat-card p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl text-center sm:text-right">
-                        <div class="text-xl sm:text-2xl font-black text-blue-500" id="statSlidesCount">35</div>
-                        <div class="hero-stat-label text-[11px] sm:text-xs font-medium">سلايد كاملة ومصورة</div>
+                        <div class="text-xl sm:text-2xl font-black text-blue-500" id="statSlidesCount">64</div>
+                        <div class="hero-stat-label text-[11px] sm:text-xs font-medium">سلايد وصفحة مصورة</div>
                     </div>
                     <div class="hero-stat-card p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl text-center sm:text-right">
                         <div class="text-xl sm:text-2xl font-black text-emerald-500">100%</div>
                         <div class="hero-stat-label text-[11px] sm:text-xs font-medium">شرح بالعامية وأمثلة</div>
                     </div>
                     <div class="hero-stat-card p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl text-center sm:text-right">
-                        <div class="text-xl sm:text-2xl font-black text-indigo-500">14</div>
-                        <div class="hero-stat-label text-[11px] sm:text-xs font-medium">تقنية حل مشكلات</div>
+                        <div class="text-xl sm:text-2xl font-black text-indigo-500">18+</div>
+                        <div class="hero-stat-label text-[11px] sm:text-xs font-medium">أداة وتقنية تحليل</div>
                     </div>
                     <div class="hero-stat-card p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl text-center sm:text-right">
                         <div class="text-xl sm:text-2xl font-black text-amber-500">100%</div>
-                        <div class="hero-stat-label text-[11px] sm:text-xs font-medium">تغطية شاملة للمقرر</div>
+                        <div class="hero-stat-label text-[11px] sm:text-xs font-medium">تغطية شاملة ودقيقة</div>
                     </div>
+                </div>
+
+                <!-- PDF Resource Link -->
+                <div class="pt-2 sm:pt-3 flex flex-wrap items-center gap-2">
+                    <a href="assets/docs/DOC-20261031-WA0051.pdf" download="Chapter2-Problem-Analysis-DOC-WA0051.pdf" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-500/15 hover:bg-blue-500/25 text-blue-600 dark:text-blue-300 border border-blue-500/30 transition shadow-sm">
+                        <span>📄</span> تحميل ملف الشابتر الأصلي (DOC-20261031-WA0051.pdf)
+                    </a>
                 </div>
             </div>
 
@@ -122,23 +129,26 @@
         <div class="filter-container rounded-2xl p-3 sm:p-5 shadow-sm space-y-2.5 sm:space-y-4 w-full max-w-full min-w-0">
             <!-- Search Bar -->
             <div class="relative w-full min-w-0">
-                <input type="text" id="globalSearchInput" placeholder="ابحث في أي سلايد (مثل STRIPS, Gemba, 5 Whys, باريتو)..." 
+                <input type="text" id="globalSearchInput" placeholder="ابحث في أي سلايد أو مفهوم (مثل Fishbone, 5 Whys, STRIPS, Stakeholders, 6Ms)..." 
                        class="search-input w-full rounded-xl px-3.5 sm:px-4 py-2 sm:py-3 pl-9 sm:pl-10 text-xs sm:text-sm focus:outline-none transition shadow-inner">
                 <span class="absolute left-3 top-2.5 sm:top-3.5 text-slate-400 text-sm">🔍</span>
             </div>
 
             <!-- Filters Grid -->
             <div class="space-y-2.5 w-full min-w-0">
-                <!-- Lecture Selector as Grid on Mobile, Flex on Desktop -->
-                <div class="grid grid-cols-3 gap-1.5 sm:flex sm:items-center sm:gap-2 w-full">
-                    <button data-lec="all" onclick="window.setLectureFilter('all')" class="lec-filter-btn active-filter filter-pill py-1.5 sm:py-1.5 sm:px-3 rounded-lg sm:rounded-xl text-xs font-bold transition flex items-center justify-center">
-                        الكل (35)
+                <!-- Lecture Selector as Grid on Mobile (2 cols), Flex on Desktop -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:flex sm:items-center sm:gap-2 w-full">
+                    <button data-lec="all" onclick="window.setLectureFilter('all')" class="lec-filter-btn active-filter filter-pill py-1.5 px-2.5 sm:px-3 rounded-lg sm:rounded-xl text-xs font-bold transition flex items-center justify-center">
+                        الكل (64)
                     </button>
-                    <button data-lec="lec1_2" onclick="window.setLectureFilter('lec1_2')" class="lec-filter-btn filter-pill py-1.5 sm:py-1.5 sm:px-3 rounded-lg sm:rounded-xl text-xs font-bold transition flex items-center justify-center">
+                    <button data-lec="lec1_2" onclick="window.setLectureFilter('lec1_2')" class="lec-filter-btn filter-pill py-1.5 px-2.5 sm:px-3 rounded-lg sm:rounded-xl text-xs font-bold transition flex items-center justify-center">
                         محاضرة 1&2 (28)
                     </button>
-                    <button data-lec="lec3" onclick="window.setLectureFilter('lec3')" class="lec-filter-btn filter-pill py-1.5 sm:py-1.5 sm:px-3 rounded-lg sm:rounded-xl text-xs font-bold transition flex items-center justify-center">
+                    <button data-lec="lec3" onclick="window.setLectureFilter('lec3')" class="lec-filter-btn filter-pill py-1.5 px-2.5 sm:px-3 rounded-lg sm:rounded-xl text-xs font-bold transition flex items-center justify-center">
                         محاضرة 3 (7)
+                    </button>
+                    <button data-lec="ch2" onclick="window.setLectureFilter('ch2')" class="lec-filter-btn filter-pill py-1.5 px-2.5 sm:px-3 rounded-lg sm:rounded-xl text-xs font-bold transition flex items-center justify-center">
+                        شابتر 2 (29)
                     </button>
                 </div>
 
@@ -147,7 +157,7 @@
                     <div class="flex items-center gap-1.5">
                         <span class="text-xs filter-label">النتائج:</span>
                         <span id="slidesCountBadge" class="results-badge px-2 py-0.5 rounded-md sm:rounded-lg font-bold text-xs">
-                            35 سلايد
+                            64 سلايد وصفحة
                         </span>
                     </div>
                     <button onclick="window.resetFilters()" class="text-xs reset-btn underline transition font-medium">
@@ -161,6 +171,12 @@
                     <div class="flex-grow overflow-x-auto scrollbar-none py-0.5 min-w-0">
                         <div class="inline-flex items-center gap-1.5 text-xs whitespace-nowrap">
                             <button data-cat="all" onclick="window.setCategoryFilter('all')" class="cat-filter-btn active-cat filter-pill px-2.5 py-1 rounded-lg shrink-0">الكل</button>
+                            <button data-cat="Problem Analysis" onclick="window.setCategoryFilter('Problem Analysis')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">تحليل المشكلة وأبعادها</button>
+                            <button data-cat="RCA & 5 Whys" onclick="window.setCategoryFilter('RCA & 5 Whys')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">السبب الجذري و 5 Whys</button>
+                            <button data-cat="Fishbone & 6Ms" onclick="window.setCategoryFilter('Fishbone & 6Ms')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">هيكل السمكة وإيشيكاوا</button>
+                            <button data-cat="Stakeholders vs Shareholders" onclick="window.setCategoryFilter('Stakeholders vs Shareholders')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">المساهمون وأصحاب المصلحة</button>
+                            <button data-cat="Stakeholder Mapping" onclick="window.setCategoryFilter('Stakeholder Mapping')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">مصفوفة أصحاب المصلحة</button>
+                            <button data-cat="AI & Modern RCA" onclick="window.setCategoryFilter('AI & Modern RCA')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">الذكاء الاصطناعي في RCA</button>
                             <button data-cat="Problem Statement" onclick="window.setCategoryFilter('Problem Statement')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">صياغة المشكلة</button>
                             <button data-cat="Problem Solving Steps" onclick="window.setCategoryFilter('Problem Solving Steps')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">خطوات الحل و Gemba</button>
                             <button data-cat="AI Planning" onclick="window.setCategoryFilter('AI Planning')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">التخطيط بالذكاء الاصطناعي</button>
