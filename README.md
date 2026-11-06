@@ -39,7 +39,8 @@
 ---
 
 ## 🌐 تفعيل GitHub Pages:
-1. افتح مستودع المشروع على GitHub: `https://github.com/mohamed6769/PS`.
+1. افتح مستودع المشروع على GitHub: `https://github.com/M0hamedabohelal/PS`.
 2. ادخل على **Settings** -> **Pages**.
 3. في قسم **Branch** اختر `main` واجعل المجلد `/ (root)`.
 4. اضغط **Save** وسيكون موقعك متاحاً على الإنترنت مباشرة!
+   رابط الموقع المباشر: `https://m0hamedabohelal.github.io/PS/`
