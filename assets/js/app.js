@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentLecture: 'all', // 'all', 'lec1_2', 'lec3'
         currentCategory: 'all',
         searchQuery: '',
-        viewMode: 'cards', // 'cards', 'deck'
+        viewMode: 'deck', // default to deck view for high-impact visual presentation
         deckIndex: 0,
         theme: localStorage.getItem('ps_theme') || 'dark',
         fontScale: localStorage.getItem('ps_font_scale') || 'md',
@@ -45,6 +45,89 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     window.setFontScale(state.fontScale);
+
+    // Rich Text Formatter for Slang & Practical Examples
+    function formatRichText(rawText, isAmber = true) {
+        if (!rawText) return '';
+        let text = rawText.trim();
+
+        // Check if contains numbered items like '1. ' or '1- '
+        const hasNumberedList = /(?:^|\n|\s)\d+[\.\-]\s/.test(text);
+
+        if (hasNumberedList) {
+            // Find first occurrence of '1.' or '1-'
+            const firstMatch = text.match(/(?:^|\n|\s)(1[\.\-]\s)/);
+            let intro = '';
+            let listText = text;
+            if (firstMatch && firstMatch.index > 0) {
+                intro = text.substring(0, firstMatch.index).trim();
+                listText = text.substring(firstMatch.index).trim();
+            }
+
+            // Split by number pattern: e.g. 1. or 2.
+            const rawItems = listText.split(/(?=(?:^|\n|\s)\d+[\.\-]\s)/).map(s => s.trim()).filter(Boolean);
+
+            let html = '';
+            if (intro) {
+                html += `<div class="text-base sm:text-lg font-bold text-heading mb-3 leading-relaxed opacity-95">${intro}</div>`;
+            }
+
+            html += '<div class="space-y-3 mt-2">';
+            rawItems.forEach(item => {
+                const m = item.match(/^(\d+)[\.\-]\s*([\s\S]*)$/);
+                if (m) {
+                    const num = m[1];
+                    let body = m[2].trim();
+                    let itemTitle = '';
+                    let itemDesc = body;
+                    const colonIdx = body.indexOf(':');
+                    if (colonIdx > 0 && colonIdx < 60) {
+                        itemTitle = body.substring(0, colonIdx).trim();
+                        itemDesc = body.substring(colonIdx + 1).trim();
+                    }
+
+                    const badgeBg = isAmber 
+                        ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' 
+                        : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+
+                    html += `
+                        <div class="formatted-item p-3.5 sm:p-4 rounded-xl flex items-start gap-3.5 shadow-sm transition hover:border-slate-500">
+                            <span class="shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center font-black text-sm sm:text-base ${badgeBg}">${num}</span>
+                            <div class="flex-1 text-sm sm:text-base leading-relaxed">
+                                ${itemTitle ? `<strong class="font-bold text-heading block mb-1 text-base sm:text-lg">${itemTitle}:</strong>` : ''}
+                                <span class="opacity-95 leading-relaxed">${itemDesc}</span>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    html += `<div class="text-sm sm:text-base leading-relaxed">${item}</div>`;
+                }
+            });
+            html += '</div>';
+            return html;
+        }
+
+        // Check for bullets
+        if (text.includes('- ') || text.includes('• ')) {
+            const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+            let html = '<div class="space-y-2.5 my-2">';
+            lines.forEach(line => {
+                const clean = line.replace(/^[\-•]\s*/, '').trim();
+                html += `
+                    <div class="flex items-start gap-3 text-sm sm:text-base leading-relaxed">
+                        <span class="text-sky-400 mt-1 shrink-0 text-base">🔹</span>
+                        <span class="opacity-95 leading-relaxed">${clean}</span>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            return html;
+        }
+
+        // Default: split paragraphs
+        const paragraphs = text.split(/\n\n+/).map(p => p.trim()).filter(Boolean);
+        return paragraphs.map(p => `<p class="text-base sm:text-lg leading-relaxed mb-3 last:mb-0 opacity-95">${p}</p>`).join('');
+    }
 
     // Filter Logic
     function filterSlides() {
@@ -156,40 +239,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     <!-- Titles -->
                     <div class="p-5 pb-2">
-                        <h3 class="text-xl font-bold text-heading leading-snug">${slide.titleAr}</h3>
-                        <div class="text-xs font-mono text-slate-400 mt-1">${slide.titleEn}</div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-heading leading-snug">${slide.titleAr}</h3>
+                        <div class="text-xs sm:text-sm font-mono text-slate-400 mt-1" dir="ltr">${slide.titleEn}</div>
                     </div>
 
                     <!-- Explanations in Egyptian Slang -->
                     <div class="px-5 py-3">
                         <div class="p-4 sm:p-5 rounded-2xl slang-callout shadow-sm">
-                            <div class="flex items-center gap-2 text-xs sm:text-sm font-bold slang-callout-title mb-2">
-                                <span class="text-base">💡</span> الشرح بالعامية (بالبلدي وبكل بساطة):
+                            <div class="flex items-center gap-2 text-sm sm:text-base font-bold slang-callout-title mb-3">
+                                <span class="text-lg">💡</span> الشرح بالعامية (بالبلدي وبكل بساطة):
                             </div>
-                            <p class="text-base slang-callout-text leading-relaxed font-normal whitespace-pre-line">${slide.slangExplanation}</p>
+                            <div class="slang-callout-text leading-relaxed font-normal">
+                                ${formatRichText(slide.slangExplanation, true)}
+                            </div>
                         </div>
                     </div>
 
                     <!-- Practical Example -->
                     <div class="px-5 pb-3">
                         <div class="p-4 sm:p-5 rounded-2xl example-callout shadow-sm">
-                            <div class="flex items-center gap-2 text-xs sm:text-sm font-bold example-callout-title mb-2">
-                                <span class="text-base">🚀</span> مثال عملي من الواقع:
+                            <div class="flex items-center gap-2 text-sm sm:text-base font-bold example-callout-title mb-3">
+                                <span class="text-lg">🚀</span> مثال عملي من الواقع:
                             </div>
-                            <p class="text-sm sm:text-base example-callout-text leading-relaxed whitespace-pre-line">${slide.practicalExample}</p>
+                            <div class="example-callout-text leading-relaxed">
+                                ${formatRichText(slide.practicalExample, false)}
+                            </div>
                         </div>
                     </div>
 
                     <!-- Collapsible Original English Content -->
                     <div class="px-5 pb-4">
-                        <details class="group themed-inner bg-slate-950 rounded-xl border border-slate-800 text-xs">
+                        <details class="group themed-inner bg-slate-950 rounded-xl border border-slate-800 text-xs sm:text-sm">
                             <summary class="p-3 font-medium text-slate-400 cursor-pointer list-none flex items-center justify-between select-none">
                                 <span class="flex items-center gap-1.5">
                                     <span>📄</span> النص الأصلي للسلايد بالإنجليزية
                                 </span>
                                 <span class="text-slate-500 group-open:rotate-180 transition">▼</span>
                             </summary>
-                            <div class="p-3 pt-1 text-slate-300 font-mono text-[11px] space-y-1.5 border-t border-slate-800">
+                            <div class="p-3 pt-1 text-slate-300 font-mono text-xs sm:text-sm space-y-1.5 border-t border-slate-800" dir="ltr">
                                 ${slide.contentOriginal.map(c => `<div>• ${c}</div>`).join('')}
                             </div>
                         </details>
@@ -197,14 +284,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
 
                 <!-- Card Footer (Takeaway & Exam Tip) -->
-                <div class="p-5 pt-3 themed-inner bg-slate-950/70 border-t border-slate-800 space-y-2">
-                    <div class="text-[11px] text-sky-400 flex items-start gap-1.5">
+                <div class="p-5 pt-3 themed-inner bg-slate-950/70 border-t border-slate-800 space-y-2.5">
+                    <div class="text-xs sm:text-sm text-sky-400 flex items-start gap-2">
                         <span class="font-bold shrink-0">🎯 كبسولة:</span>
-                        <span class="text-slate-300">${slide.keyTakeaway}</span>
+                        <span class="text-slate-200">${slide.keyTakeaway}</span>
                     </div>
-                    <div class="text-[11px] text-amber-400 flex items-start gap-1.5">
+                    <div class="text-xs sm:text-sm text-amber-400 flex items-start gap-2">
                         <span class="font-bold shrink-0">📝 في الامتحان:</span>
-                        <span class="text-slate-300">${slide.examTip}</span>
+                        <span class="text-slate-200">${slide.examTip}</span>
                     </div>
                 </div>
             </div>
@@ -226,13 +313,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 <!-- Deck Controls Top -->
                 <div class="flex items-center justify-between gap-4 pb-5 border-b border-slate-800">
                     <div class="flex items-center gap-3">
-                        <span class="px-3.5 py-1.5 text-xs sm:text-sm font-bold rounded-xl ${slide.lec === 'lec1_2' ? 'bg-sky-500/20 text-sky-400' : 'bg-emerald-500/20 text-emerald-400'}">
+                        <span class="px-3.5 py-1.5 text-xs sm:text-sm font-bold rounded-xl ${slide.lec === 'lec1_2' ? 'bg-sky-500/20 text-sky-400 border border-sky-500/30' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'}">
                             ${slide.lec === 'lec1_2' ? 'محاضرة 1&2' : 'محاضرة 3'}
                         </span>
                         <span class="px-3.5 py-1.5 text-xs sm:text-sm font-bold rounded-xl bg-slate-800/90 text-slate-200">
-                            سلايد ${slide.slideNum} من 37
+                            سلايد ${slide.slideNum}
                         </span>
-                        <span class="text-xs sm:text-sm text-slate-400 font-mono">(${state.deckIndex + 1} / ${state.allSlides.length})</span>
+                        <span class="text-xs sm:text-sm text-slate-400 font-mono">(${state.deckIndex + 1} من ${state.allSlides.length})</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <button onclick="window.deckPrev()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow">
@@ -245,40 +332,53 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
 
                 <!-- Deck Body -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 my-8 items-center">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 my-8 items-start">
                     <!-- Original Slide Large Image (6 Cols) -->
                     <div class="lg:col-span-6 relative rounded-2xl overflow-hidden bg-black/40 border border-slate-700/80 cursor-pointer shadow-2xl group flex items-center justify-center min-h-[380px] lg:min-h-[500px]" onclick="window.openLightboxBySlideId('${slide.id}')">
-                        <img src="${slide.image}" alt="${slide.titleEn}" class="w-full h-auto max-h-[540px] object-contain transition-transform duration-300 group-hover:scale-102">
+                        <img src="${slide.image}" alt="${slide.titleEn}" class="w-full h-auto max-h-[560px] object-contain transition-transform duration-300 group-hover:scale-102">
                         <div class="absolute bottom-3 right-3 bg-slate-900/90 text-white text-xs px-3 py-1.5 rounded-xl border border-slate-700 shadow-lg flex items-center gap-1.5">
                             <span>🔍</span> انقر للتكبير
                         </div>
                     </div>
 
                     <!-- Slide Details (6 Cols) -->
-                    <div class="lg:col-span-6 space-y-5">
+                    <div class="lg:col-span-6 space-y-6">
                         <div>
                             <span class="text-xs sm:text-sm text-blue-400 font-extrabold px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 inline-block mb-2">${slide.categoryAr}</span>
                             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-heading leading-tight">${slide.titleAr}</h2>
-                            <div class="text-xs sm:text-sm font-mono text-slate-400 mt-1.5">${slide.titleEn}</div>
+                            <div class="text-sm sm:text-base font-mono text-slate-400 mt-2" dir="ltr">${slide.titleEn}</div>
                         </div>
 
+                        <!-- Slang Explanation Box -->
                         <div class="p-5 sm:p-6 rounded-2xl slang-callout shadow-md">
-                            <div class="text-sm sm:text-base font-bold slang-callout-title mb-2 flex items-center gap-2">
-                                <span class="text-lg">💡</span> الشرح بالعامية (بالبلدي وبكل بساطة):
+                            <div class="text-base sm:text-lg font-black slang-callout-title mb-3 flex items-center gap-2">
+                                <span class="text-xl">💡</span> الشرح بالعامية (بالبلدي وبكل بساطة):
                             </div>
-                            <p class="text-base sm:text-lg slang-callout-text leading-relaxed font-normal whitespace-pre-line">${slide.slangExplanation}</p>
+                            <div class="slang-callout-text leading-relaxed font-normal">
+                                ${formatRichText(slide.slangExplanation, true)}
+                            </div>
                         </div>
 
-                        <div class="p-4 sm:p-5 rounded-2xl example-callout shadow-md">
-                            <div class="text-sm sm:text-base font-bold example-callout-title mb-2 flex items-center gap-2">
-                                <span class="text-lg">🚀</span> مثال واقعي:
+                        <!-- Practical Example Box -->
+                        <div class="p-5 sm:p-6 rounded-2xl example-callout shadow-md">
+                            <div class="text-base sm:text-lg font-black example-callout-title mb-3 flex items-center gap-2">
+                                <span class="text-xl">🚀</span> مثال واقعي من الحياة والبرمجة:
                             </div>
-                            <p class="text-sm sm:text-base example-callout-text leading-relaxed font-normal whitespace-pre-line">${slide.practicalExample}</p>
+                            <div class="example-callout-text leading-relaxed font-normal">
+                                ${formatRichText(slide.practicalExample, false)}
+                            </div>
                         </div>
 
-                        <div class="p-4 themed-inner bg-slate-950 rounded-xl border border-slate-800 text-sm flex items-start gap-2 shadow-inner">
-                            <span class="font-bold text-amber-400 shrink-0 text-base">📝 نقطة امتحان:</span> 
-                            <span class="text-slate-200 font-normal leading-relaxed text-sm sm:text-base">${slide.examTip}</span>
+                        <!-- Exam Tip -->
+                        <div class="p-4 sm:p-5 themed-inner bg-slate-950 rounded-2xl border border-slate-800 text-sm sm:text-base flex items-start gap-3 shadow-inner">
+                            <span class="font-bold text-amber-400 shrink-0 text-lg">📝 نقطة امتحان:</span> 
+                            <span class="text-slate-100 font-medium leading-relaxed text-sm sm:text-base">${slide.examTip}</span>
+                        </div>
+
+                        <!-- Key Takeaway -->
+                        <div class="p-4 sm:p-5 themed-inner bg-slate-950/80 rounded-2xl border border-slate-800 text-sm sm:text-base flex items-start gap-3 shadow-inner">
+                            <span class="font-bold text-sky-400 shrink-0 text-lg">🎯 كبسولة سريعة:</span> 
+                            <span class="text-slate-200 font-medium leading-relaxed text-sm sm:text-base">${slide.keyTakeaway}</span>
                         </div>
                     </div>
                 </div>

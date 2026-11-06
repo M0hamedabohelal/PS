@@ -11,18 +11,18 @@
     --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* Base font size increased for eye comfort */
+/* Base font size set to 20px for large, ultra-clear readability */
 html, :root { 
-    font-size: 18px; 
+    font-size: 20px; 
 }
-html.font-scale-sm { font-size: 16px; }
-html.font-scale-md { font-size: 18px; }
-html.font-scale-lg { font-size: 20px; }
-html.font-scale-xl { font-size: 23px; }
+html.font-scale-sm { font-size: 17px; }
+html.font-scale-md { font-size: 20px; }
+html.font-scale-lg { font-size: 23px; }
+html.font-scale-xl { font-size: 26px; }
 
 body {
     font-family: var(--font-arabic);
-    line-height: 1.85;
+    line-height: 1.9;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.35s ease, color 0.35s ease;
@@ -31,6 +31,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     letter-spacing: -0.015em;
+    line-height: 1.35;
 }
 
 .font-mono {
@@ -49,12 +50,14 @@ h1, h2, h3, h4, h5, h6 {
     --text-title: #F8FAFC;
     --text-body: #D1D5DB;
     --text-muted: #9CA3AF;
-    --slang-box-bg: rgba(245, 158, 11, 0.09);
-    --slang-box-border: rgba(245, 158, 11, 0.3);
+    --item-bg: rgba(15, 23, 42, 0.75);
+    --item-border: rgba(51, 65, 85, 0.7);
+    --slang-box-bg: rgba(245, 158, 11, 0.08);
+    --slang-box-border: rgba(245, 158, 11, 0.28);
     --slang-box-title: #FBBF24;
     --slang-box-text: #F3F4F6;
-    --example-box-bg: rgba(16, 185, 129, 0.09);
-    --example-box-border: rgba(16, 185, 129, 0.3);
+    --example-box-bg: rgba(16, 185, 129, 0.08);
+    --example-box-border: rgba(16, 185, 129, 0.28);
     --example-box-title: #34D399;
     --example-box-text: #F3F4F6;
 }
@@ -91,12 +94,14 @@ h1, h2, h3, h4, h5, h6 {
     --text-title: #F6EFE9;
     --text-body: #D9CEB9;
     --text-muted: #A39688;
-    --slang-box-bg: rgba(229, 169, 60, 0.14);
-    --slang-box-border: rgba(229, 169, 60, 0.4);
+    --item-bg: rgba(46, 37, 32, 0.9);
+    --item-border: rgba(82, 67, 57, 0.8);
+    --slang-box-bg: rgba(229, 169, 60, 0.12);
+    --slang-box-border: rgba(229, 169, 60, 0.35);
     --slang-box-title: #E5A93C;
     --slang-box-text: #FAF6F0;
-    --example-box-bg: rgba(109, 190, 145, 0.14);
-    --example-box-border: rgba(109, 190, 145, 0.4);
+    --example-box-bg: rgba(109, 190, 145, 0.12);
+    --example-box-border: rgba(109, 190, 145, 0.35);
     --example-box-title: #6DBE91;
     --example-box-text: #FAF6F0;
 }
@@ -157,7 +162,9 @@ h1, h2, h3, h4, h5, h6 {
     --text-title: #0F172A;
     --text-body: #334155;
     --text-muted: #64748B;
-    --slang-box-bg: #FEF3C7;
+    --item-bg: #FFFFFF;
+    --item-border: #E2E8F0;
+    --slang-box-bg: #FFFBEB;
     --slang-box-border: #FCD34D;
     --slang-box-title: #B45309;
     --slang-box-text: #1E293B;
@@ -183,7 +190,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--bg-card) !important;
     border-color: var(--border-main) !important;
     color: var(--text-body) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
 }
 
 .theme-light .bg-slate-950,
@@ -216,23 +223,41 @@ h1, h2, h3, h4, h5, h6 {
 .slang-callout {
     background-color: var(--slang-box-bg) !important;
     border: 1.5px solid var(--slang-box-border) !important;
+    backdrop-filter: blur(8px);
 }
 .slang-callout-title {
     color: var(--slang-box-title) !important;
 }
 .slang-callout-text {
     color: var(--slang-box-text) !important;
+    font-size: 1.05rem;
+    line-height: 1.95;
 }
 
 .example-callout {
     background-color: var(--example-box-bg) !important;
     border: 1.5px solid var(--example-box-border) !important;
+    backdrop-filter: blur(8px);
 }
 .example-callout-title {
     color: var(--example-box-title) !important;
 }
 .example-callout-text {
     color: var(--example-box-text) !important;
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+/* Formatted Item Card */
+.formatted-item {
+    background-color: var(--item-bg) !important;
+    border: 1px solid var(--item-border) !important;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.formatted-item:hover {
+    border-color: rgba(96, 165, 250, 0.4) !important;
 }
 
 /* Custom Scrollbars */
