@@ -66,6 +66,34 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     letter-spacing: -0.015em;
     line-height: 1.35;
+    text-wrap: balance;
+}
+
+/* Inline Technical Term Badge */
+.tech-badge {
+    display: inline-block;
+    padding: 0.1rem 0.45rem;
+    margin: 0 0.2rem;
+    border-radius: 0.375rem;
+    font-size: 0.88em;
+    font-weight: 700;
+    line-height: 1.35;
+    vertical-align: middle;
+}
+.theme-dark .tech-badge {
+    background-color: rgba(59, 130, 246, 0.18) !important;
+    color: #93C5FD !important;
+    border: 1px solid rgba(59, 130, 246, 0.35) !important;
+}
+.theme-sepia .tech-badge {
+    background-color: rgba(229, 169, 60, 0.2) !important;
+    color: #FDE68A !important;
+    border: 1px solid rgba(229, 169, 60, 0.4) !important;
+}
+.theme-light .tech-badge {
+    background-color: #EFF6FF !important;
+    color: #1D4ED8 !important;
+    border: 1px solid #BFDBFE !important;
 }
 
 .font-mono {

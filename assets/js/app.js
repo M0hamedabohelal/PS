@@ -46,16 +46,35 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     window.setFontScale(state.fontScale);
 
+    // Format Arabic Title to prevent BiDi wrapping on trailing English symbols
+    function formatArabicTitle(title) {
+        if (!title) return '';
+        return title.replace(/([A-Za-z0-9\*\+\-]+(?:\s+[A-Za-z0-9\*\+\-]+)*)/g, '<span dir="ltr" class="inline-block whitespace-nowrap font-mono font-bold">$1</span>');
+    }
+
+    // Helper to highlight technical terms in English and quoted terms
+    function highlightTerms(str) {
+        if (!str) return '';
+        // 1. Highlight terms in parentheses: e.g. (Atomic Actions) or (State Space Search)
+        let res = str.replace(/\(([A-Za-z0-9\s\*_\-\+—/]+)\)/g, (match, term) => {
+            return `<span class="tech-badge font-mono" dir="ltr">(${term.trim()})</span>`;
+        });
+        // 2. Standalone A* algorithm
+        res = res.replace(/(^|\s)A\*(\s|$|[،\.!])/g, '$1<span class="tech-badge font-mono font-black" dir="ltr">A*</span>$2');
+        // 3. Highlight single quotes: e.g. 'فضاء الحالات' -> «فضاء الحالات»
+        res = res.replace(/'([^']+)'/g, '<strong class="font-bold text-heading">«$1»</strong>');
+        return res;
+    }
+
     // Rich Text Formatter for Slang & Practical Examples
     function formatRichText(rawText, isAmber = true) {
         if (!rawText) return '';
-        let text = rawText.trim();
+        const text = rawText.trim();
 
         // Check if contains numbered items like '1. ' or '1- '
         const hasNumberedList = /(?:^|\n|\s)\d+[\.\-]\s/.test(text);
 
         if (hasNumberedList) {
-            // Find first occurrence of '1.' or '1-'
             const firstMatch = text.match(/(?:^|\n|\s)(1[\.\-]\s)/);
             let intro = '';
             let listText = text;
@@ -64,20 +83,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 listText = text.substring(firstMatch.index).trim();
             }
 
-            // Split by number pattern: e.g. 1. or 2.
             const rawItems = listText.split(/(?=(?:^|\n|\s)\d+[\.\-]\s)/).map(s => s.trim()).filter(Boolean);
 
             let html = '';
             if (intro) {
-                html += `<div class="text-base sm:text-lg font-bold text-heading mb-3 leading-relaxed">${intro}</div>`;
+                html += `<div class="text-sm sm:text-base font-bold text-heading mb-2.5 leading-relaxed">${highlightTerms(intro)}</div>`;
             }
 
-            html += '<div class="space-y-3 mt-2">';
+            html += '<div class="space-y-2.5 mt-2">';
             rawItems.forEach(item => {
                 const m = item.match(/^(\d+)[\.\-]\s*([\s\S]*)$/);
                 if (m) {
                     const num = m[1];
-                    let body = m[2].trim();
+                    const body = m[2].trim();
                     let itemTitle = '';
                     let itemDesc = body;
                     const colonIdx = body.indexOf(':');
@@ -89,42 +107,76 @@ document.addEventListener('DOMContentLoaded', () => {
                     const badgeClass = isAmber ? 'badge-slang' : 'badge-example';
 
                     html += `
-                        <div class="formatted-item p-3.5 sm:p-4 rounded-xl flex items-start gap-3.5 shadow-sm transition">
-                            <span class="shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center font-black text-sm sm:text-base ${badgeClass}">${num}</span>
-                            <div class="flex-1 text-sm sm:text-base leading-relaxed">
-                                ${itemTitle ? `<strong class="font-bold text-heading block mb-1 text-base sm:text-lg">${itemTitle}:</strong>` : ''}
-                                <span class="leading-relaxed opacity-95">${itemDesc}</span>
+                        <div class="formatted-item p-3 sm:p-3.5 rounded-xl flex items-start gap-3 shadow-sm transition">
+                            <span class="shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center font-black text-xs sm:text-sm ${badgeClass}">${num}</span>
+                            <div class="flex-1 text-xs sm:text-sm md:text-base leading-relaxed">
+                                ${itemTitle ? `<strong class="font-bold text-heading block mb-0.5 text-sm sm:text-base">${highlightTerms(itemTitle)}:</strong>` : ''}
+                                <span class="leading-relaxed opacity-95">${highlightTerms(itemDesc)}</span>
                             </div>
                         </div>
                     `;
                 } else {
-                    html += `<div class="text-sm sm:text-base leading-relaxed">${item}</div>`;
+                    html += `<div class="text-xs sm:text-sm md:text-base leading-relaxed">${highlightTerms(item)}</div>`;
                 }
             });
             html += '</div>';
             return html;
         }
 
-        // Check for bullets
-        if (text.includes('- ') || text.includes('• ')) {
-            const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
-            let html = '<div class="space-y-2.5 my-2">';
-            lines.forEach(line => {
+        // Line-by-line smart processing (supports bullets, rhetorical questions, and paragraphs)
+        const lines = text.split(/\n+/).map(l => l.trim()).filter(Boolean);
+
+        let html = '<div class="space-y-3">';
+        lines.forEach(line => {
+            // Check if bullet point (- or •)
+            if (/^[\-•]\s*/.test(line)) {
                 const clean = line.replace(/^[\-•]\s*/, '').trim();
+                let bulletTitle = '';
+                let bulletBody = clean;
+                const colonIdx = clean.indexOf(':');
+                if (colonIdx > 0 && colonIdx < 50) {
+                    bulletTitle = clean.substring(0, colonIdx).trim();
+                    bulletBody = clean.substring(colonIdx + 1).trim();
+                }
+
                 html += `
-                    <div class="flex items-start gap-3 text-sm sm:text-base leading-relaxed">
-                        <span class="text-blue-500 mt-1 shrink-0 text-base">🔹</span>
-                        <span class="leading-relaxed opacity-95">${clean}</span>
+                    <div class="formatted-item p-3 sm:p-3.5 rounded-xl flex items-start gap-2.5 shadow-sm transition">
+                        <span class="text-blue-500 mt-0.5 shrink-0 text-base">🔹</span>
+                        <div class="flex-1 text-xs sm:text-sm md:text-base leading-relaxed">
+                            ${bulletTitle ? `<strong class="font-bold text-heading block mb-0.5 text-sm sm:text-base">${highlightTerms(bulletTitle)}:</strong>` : ''}
+                            <span class="leading-relaxed opacity-95">${highlightTerms(bulletBody)}</span>
+                        </div>
                     </div>
                 `;
-            });
-            html += '</div>';
-            return html;
-        }
-
-        // Default: split paragraphs
-        const paragraphs = text.split(/\n\n+/).map(p => p.trim()).filter(Boolean);
-        return paragraphs.map(p => `<p class="text-base sm:text-lg leading-relaxed mb-3 last:mb-0 opacity-95">${p}</p>`).join('');
+            }
+            // Check if rhetorical question (e.g. الروبوت عشان يخطط بيعمل إيه؟)
+            else if (line.endsWith('؟') || line.endsWith('?')) {
+                html += `
+                    <div class="font-extrabold text-heading text-sm sm:text-base md:text-lg my-1.5 flex items-center gap-2">
+                        <span class="text-base sm:text-lg">❓</span>
+                        <span>${highlightTerms(line)}</span>
+                    </div>
+                `;
+            }
+            // Check if section lead / intro (ends with ':')
+            else if (line.endsWith(':')) {
+                html += `
+                    <div class="font-bold text-heading text-xs sm:text-sm md:text-base mt-2 mb-0.5">
+                        ${highlightTerms(line)}
+                    </div>
+                `;
+            }
+            // Normal paragraph
+            else {
+                html += `
+                    <p class="text-xs sm:text-sm md:text-base leading-relaxed opacity-95">
+                        ${highlightTerms(line)}
+                    </p>
+                `;
+            }
+        });
+        html += '</div>';
+        return html;
     }
 
     // Filter Logic
@@ -224,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="lg:col-span-6 space-y-4 sm:space-y-6 w-full min-w-0">
                         <div>
                             <span class="text-[11px] sm:text-sm font-extrabold px-2.5 sm:px-3 py-1 rounded-full badge-category inline-block mb-1.5 sm:mb-2">${slide.categoryAr}</span>
-                            <h2 class="text-xl sm:text-2xl lg:text-3xl font-black text-heading leading-tight">${slide.titleAr}</h2>
+                            <h2 class="text-xl sm:text-2xl lg:text-3xl font-black text-heading leading-tight">${formatArabicTitle(slide.titleAr)}</h2>
                             <div class="text-xs sm:text-sm font-mono text-subtitle mt-1.5 sm:mt-2" dir="ltr">${slide.titleEn}</div>
                         </div>
 
