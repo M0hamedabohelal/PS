@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         searchQuery: '',
         viewMode: 'deck', // default to deck view for high-impact visual presentation
         deckIndex: 0,
-        theme: localStorage.getItem('ps_theme') || 'dark',
+        theme: localStorage.getItem('ps_theme_v3') || 'light',
         fontScale: localStorage.getItem('ps_font_scale') || 'md',
         lightboxIndex: 0
     };
@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Apply Theme
     function applyTheme(theme) {
         state.theme = theme;
+        localStorage.setItem('ps_theme_v3', theme);
         localStorage.setItem('ps_theme', theme);
         document.documentElement.classList.remove('theme-dark', 'theme-sepia', 'theme-light');
         document.documentElement.classList.add(`theme-${theme}`);
@@ -323,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button onclick="window.deckPrev()" class="deck-btn-prev px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow">
                             السابق ⬅️
                         </button>
-                        <button onclick="window.deckNext()" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow">
+                        <button onclick="window.deckNext()" class="deck-btn-next px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow">
                             التالي ➡️
                         </button>
                     </div>
