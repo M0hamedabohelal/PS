@@ -1,4 +1,4 @@
-// Main Application Logic for CS413 Course Companion
+// Main Application Logic for CS413 Course Companion (Presentation Deck Mode)
 // Tanta University - Dr. Moustafa El-Ashry
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,9 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
         currentLecture: 'all', // 'all', 'lec1_2', 'lec3'
         currentCategory: 'all',
         searchQuery: '',
-        viewMode: 'deck', // default to deck view for high-impact visual presentation
         deckIndex: 0,
-        theme: localStorage.getItem('ps_theme_v3') || 'light',
+        theme: localStorage.getItem('ps_theme_v3') || 'light', // Default is 'light'
         fontScale: localStorage.getItem('ps_font_scale') || 'md',
         lightboxIndex: 0
     };
@@ -158,143 +157,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const countEl = document.getElementById('slidesCountBadge');
         if (countEl) countEl.innerText = `${state.filteredSlides.length} سلايد`;
 
-        renderCurrentView();
-    }
-
-    // View Switcher
-    function setViewMode(mode) {
-        state.viewMode = mode;
-        document.querySelectorAll('.nav-tab').forEach(tab => {
-            if (tab.dataset.mode === mode) {
-                tab.classList.add('active-tab');
-            } else {
-                tab.classList.remove('active-tab');
-            }
-        });
-
-        // Toggle container visibility
-        const cardsEl = document.getElementById('cardsViewContainer');
-        const deckEl = document.getElementById('deckViewContainer');
-        if (cardsEl) cardsEl.classList.toggle('hidden', mode !== 'cards');
-        if (deckEl) deckEl.classList.toggle('hidden', mode !== 'deck');
-
-        renderCurrentView();
-    }
-
-    function renderCurrentView() {
-        if (state.viewMode === 'cards') {
-            renderCards();
-        } else if (state.viewMode === 'deck') {
-            renderDeck();
-        }
-    }
-
-    // Render Cards View
-    function renderCards() {
-        const container = document.getElementById('cardsGrid');
-        if (!container) return;
-
-        if (state.filteredSlides.length === 0) {
-            container.innerHTML = `
-                <div class="col-span-full py-16 text-center">
-                    <div class="text-4xl mb-3">🔍</div>
-                    <h3 class="text-lg font-bold text-heading">لم يتم العثور على أي سلايد مطابقة لبحثك</h3>
-                    <p class="text-sm text-subtitle mt-1">جرب كلمات بحث أخرى أو قم بإلغاء الفلاتر المحددة</p>
-                    <button onclick="window.resetFilters()" class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl transition shadow">
-                        إعادة ضبط الفلاتر والبحث
-                    </button>
-                </div>
-            `;
-            return;
-        }
-
-        container.innerHTML = state.filteredSlides.map((slide) => `
-            <div class="slide-card themed-card rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between" id="${slide.id}">
-                <div>
-                    <!-- Card Top Header -->
-                    <div class="p-5 pb-3 border-b tabs-border flex items-center justify-between gap-2">
-                        <div class="flex items-center gap-2">
-                            <span class="px-2.5 py-1 text-[11px] font-bold rounded-lg ${slide.lec === 'lec1_2' ? 'badge-lec12' : 'badge-lec3'}">
-                                ${slide.lec === 'lec1_2' ? 'محاضرة 1&2' : 'محاضرة 3'}
-                            </span>
-                            <span class="px-2.5 py-1 text-[11px] font-bold rounded-lg badge-slide-num">
-                                سلايد ${slide.slideNum}
-                            </span>
-                        </div>
-                        <span class="text-xs font-bold px-2.5 py-0.5 rounded-lg badge-category">
-                            ${slide.categoryAr}
-                        </span>
-                    </div>
-
-                    <!-- Slide Image with Lightbox trigger -->
-                    <div class="relative group cursor-pointer overflow-hidden themed-inner border-b tabs-border" onclick="window.openLightboxBySlideId('${slide.id}')">
-                        <img src="${slide.image}" alt="${slide.titleEn}" class="w-full h-56 sm:h-60 object-contain group-hover:scale-102 transition duration-300" loading="lazy">
-                        <div class="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition flex items-center justify-center backdrop-blur-[1px]">
-                            <span class="px-3.5 py-2 rounded-xl bg-slate-900/95 text-white text-xs font-bold shadow-lg border border-slate-700 flex items-center gap-1.5">
-                                <span>🔍</span> تكبير السلايد الأصلية
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Titles -->
-                    <div class="p-5 pb-2">
-                        <h3 class="text-xl sm:text-2xl font-black text-heading leading-snug">${slide.titleAr}</h3>
-                        <div class="text-xs sm:text-sm font-mono text-subtitle mt-1" dir="ltr">${slide.titleEn}</div>
-                    </div>
-
-                    <!-- Explanations in Egyptian Slang -->
-                    <div class="px-5 py-3">
-                        <div class="p-4 sm:p-5 rounded-2xl slang-callout shadow-sm">
-                            <div class="flex items-center gap-2 text-sm sm:text-base font-bold slang-callout-title mb-3">
-                                <span class="text-lg">💡</span> الشرح بالعامية (بالبلدي وبكل بساطة):
-                            </div>
-                            <div class="slang-callout-text leading-relaxed font-normal">
-                                ${formatRichText(slide.slangExplanation, true)}
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Practical Example -->
-                    <div class="px-5 pb-3">
-                        <div class="p-4 sm:p-5 rounded-2xl example-callout shadow-sm">
-                            <div class="flex items-center gap-2 text-sm sm:text-base font-bold example-callout-title mb-3">
-                                <span class="text-lg">🚀</span> مثال عملي من الواقع:
-                            </div>
-                            <div class="example-callout-text leading-relaxed">
-                                ${formatRichText(slide.practicalExample, false)}
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Collapsible Original English Content -->
-                    <div class="px-5 pb-4">
-                        <details class="group themed-inner rounded-xl border tabs-border text-xs sm:text-sm">
-                            <summary class="p-3 font-medium text-subtitle cursor-pointer list-none flex items-center justify-between select-none">
-                                <span class="flex items-center gap-1.5">
-                                    <span>📄</span> النص الأصلي للسلايد بالإنجليزية
-                                </span>
-                                <span class="text-subtitle group-open:rotate-180 transition">▼</span>
-                            </summary>
-                            <div class="p-3 pt-1 text-subtitle font-mono text-xs sm:text-sm space-y-1.5 border-t tabs-border" dir="ltr">
-                                ${slide.contentOriginal.map(c => `<div>• ${c}</div>`).join('')}
-                            </div>
-                        </details>
-                    </div>
-                </div>
-
-                <!-- Card Footer (Takeaway & Exam Tip) -->
-                <div class="p-5 pt-3 themed-inner border-t tabs-border space-y-2.5">
-                    <div class="text-xs sm:text-sm flex items-start gap-2 p-2.5 rounded-xl capsule-callout">
-                        <span class="font-bold shrink-0 text-blue-500">🎯 كبسولة:</span>
-                        <span class="opacity-95 leading-relaxed">${slide.keyTakeaway}</span>
-                    </div>
-                    <div class="text-xs sm:text-sm flex items-start gap-2 p-2.5 rounded-xl exam-callout">
-                        <span class="font-bold shrink-0 text-amber-500">📝 في الامتحان:</span>
-                        <span class="opacity-95 leading-relaxed">${slide.examTip}</span>
-                    </div>
-                </div>
-            </div>
-        `).join('');
+        state.deckIndex = 0;
+        renderDeck();
     }
 
     // Render Presentation Deck Mode
@@ -302,10 +166,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const deckContainer = document.getElementById('deckViewContent');
         if (!deckContainer) return;
 
-        if (state.deckIndex < 0) state.deckIndex = 0;
-        if (state.deckIndex >= state.allSlides.length) state.deckIndex = state.allSlides.length - 1;
+        if (state.filteredSlides.length === 0) {
+            deckContainer.innerHTML = `
+                <div class="themed-card rounded-3xl p-12 text-center max-w-2xl mx-auto shadow-xl">
+                    <div class="text-5xl mb-4">🔍</div>
+                    <h3 class="text-xl font-bold text-heading">لم يتم العثور على أي سلايد مطابقة لبحثك</h3>
+                    <p class="text-sm text-subtitle mt-2">جرب البحث بكلمات أخرى أو قم بإلغاء الفلاتر المحددة</p>
+                    <button onclick="window.resetFilters()" class="mt-5 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl transition shadow">
+                        إعادة ضبط الفلاتر والبحث
+                    </button>
+                </div>
+            `;
+            return;
+        }
 
-        const slide = state.allSlides[state.deckIndex];
+        if (state.deckIndex < 0) state.deckIndex = 0;
+        if (state.deckIndex >= state.filteredSlides.length) state.deckIndex = state.filteredSlides.length - 1;
+
+        const slide = state.filteredSlides[state.deckIndex];
 
         deckContainer.innerHTML = `
             <div class="themed-card rounded-3xl p-6 sm:p-10 shadow-2xl max-w-7xl mx-auto">
@@ -318,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span class="px-3.5 py-1.5 text-xs sm:text-sm font-bold rounded-xl badge-slide-num">
                             سلايد ${slide.slideNum}
                         </span>
-                        <span class="text-xs sm:text-sm text-subtitle font-mono">(${state.deckIndex + 1} من ${state.allSlides.length})</span>
+                        <span class="text-xs sm:text-sm text-subtitle font-mono">(${state.deckIndex + 1} من ${state.filteredSlides.length})</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <button onclick="window.deckPrev()" class="deck-btn-prev px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow">
@@ -384,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 <!-- Deck Bottom Progress Bar -->
                 <div class="w-full deck-progress-track h-2.5 rounded-full overflow-hidden mt-6">
-                    <div class="bg-gradient-to-r from-blue-500 to-emerald-400 h-full transition-all duration-300" style="width: ${((state.deckIndex + 1) / state.allSlides.length) * 100}%"></div>
+                    <div class="bg-gradient-to-r from-blue-500 to-emerald-400 h-full transition-all duration-300" style="width: ${((state.deckIndex + 1) / state.filteredSlides.length) * 100}%"></div>
                 </div>
             </div>
         `;
@@ -426,18 +304,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
+        if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) {
+            return;
+        }
         if (!document.getElementById('lightboxModal').classList.contains('hidden')) {
             if (e.key === 'Escape') window.closeLightbox();
             if (e.key === 'ArrowRight') window.lightboxNext();
             if (e.key === 'ArrowLeft') window.lightboxPrev();
-        } else if (state.viewMode === 'deck') {
+        } else {
             if (e.key === 'ArrowRight') window.deckNext();
             if (e.key === 'ArrowLeft') window.deckPrev();
         }
     });
 
     window.deckNext = function() {
-        if (state.deckIndex < state.allSlides.length - 1) {
+        if (state.deckIndex < state.filteredSlides.length - 1) {
             state.deckIndex++;
             renderDeck();
         }
@@ -495,13 +376,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Nav tabs listeners
-    document.querySelectorAll('.nav-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-            setViewMode(tab.dataset.mode);
-        });
-    });
-
     // Theme buttons listeners
     document.querySelectorAll('.theme-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -509,6 +383,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initialize View
+    // Initialize Deck View
     filterSlides();
 });

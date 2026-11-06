@@ -11,18 +11,18 @@
     --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* Base font size scaling */
+/* Base font size scaling (Restored to original comfortable scale) */
 html, :root { 
-    font-size: 20px; 
+    font-size: 18px; 
 }
-html.font-scale-sm { font-size: 17px; }
-html.font-scale-md { font-size: 20px; }
-html.font-scale-lg { font-size: 23px; }
-html.font-scale-xl { font-size: 26px; }
+html.font-scale-sm { font-size: 16px; }
+html.font-scale-md { font-size: 18px; }
+html.font-scale-lg { font-size: 20px; }
+html.font-scale-xl { font-size: 23px; }
 
 body {
     font-family: var(--font-arabic);
-    line-height: 1.9;
+    line-height: 1.8;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -617,8 +617,7 @@ header {
 }
 .slang-callout-text {
     color: var(--slang-box-text) !important;
-    font-size: 1.05rem;
-    line-height: 1.95;
+    line-height: 1.85;
 }
 
 .example-callout {
@@ -631,8 +630,7 @@ header {
 }
 .example-callout-text {
     color: var(--example-box-text) !important;
-    font-size: 1rem;
-    line-height: 1.9;
+    line-height: 1.8;
 }
 
 /* Formatted Item & Badges */

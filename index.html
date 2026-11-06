@@ -111,20 +111,8 @@
         </div>
     </section>
 
-    <!-- Navigation View Mode Tabs -->
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-        <div class="tabs-border flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none border-b">
-            <button data-mode="deck" class="nav-tab active-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition flex items-center gap-2 whitespace-nowrap">
-                <span>🖥️</span> وضع العرض التقديمي (سلايد بسلايد)
-            </button>
-            <button data-mode="cards" class="nav-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition flex items-center gap-2 whitespace-nowrap">
-                <span>🗂️</span> عرض البطاقات والشرح الكامل
-            </button>
-        </div>
-    </nav>
-
     <!-- Search & Filters Bar -->
-    <section id="searchFilterSection" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <section id="searchFilterSection" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <div class="filter-container rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
             <!-- Search Bar -->
             <div class="relative">
@@ -177,23 +165,13 @@
         </div>
     </section>
 
-    <!-- Main Dynamic Views Mount -->
+    <!-- Main Dynamic Presentation Deck Mount -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
-
-        <!-- VIEW 1: Cards View Grid -->
-        <div id="cardsViewContainer" class="hidden">
-            <div id="cardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Dynamically Rendered by app.js -->
-            </div>
-        </div>
-
-        <!-- VIEW 2: Presentation Deck View -->
         <div id="deckViewContainer">
             <div id="deckViewContent">
                 <!-- Dynamically Rendered by app.js -->
             </div>
         </div>
-
     </main>
 
     <!-- Lightbox Modal for Original Slide Zoom -->
