@@ -1,0 +1,174 @@
+/* CSS Stylesheet with Eye-Comfort Themes for CS413 Platform */
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+    --font-sans: 'Alexandria', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+    font-family: var(--font-sans);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ========================================================
+   THEME 1: Soft Dark Mode (Default - Midnight Navy, Eye Comfort)
+   ======================================================== */
+.theme-dark {
+    --bg-main: #0B1120;
+    --bg-card: #131E32;
+    --bg-elevated: #1B2942;
+    --border-color: #243552;
+    --text-primary: #F1F5F9;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+    --accent-blue: #38BDF8;
+    --accent-amber: #FBBF24;
+    --accent-emerald: #34D399;
+}
+
+.theme-dark body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+}
+
+/* ========================================================
+   THEME 2: Eye-Comfort Sepia Mode (Night Shift / Warm Amber Paper)
+   ======================================================== */
+.theme-sepia {
+    --bg-main: #231F1C;
+    --bg-card: #2E2824;
+    --bg-elevated: #3A332E;
+    --border-color: #4C433C;
+    --text-primary: #F5EFEB;
+    --text-secondary: #D4C7BC;
+    --text-muted: #9E8F82;
+    --accent-blue: #7CB5EC;
+    --accent-amber: #E5A93C;
+    --accent-emerald: #6DBE91;
+}
+
+.theme-sepia body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+}
+
+.theme-sepia .bg-slate-900 {
+    background-color: var(--bg-card) !important;
+}
+
+.theme-sepia .bg-slate-950 {
+    background-color: #1A1715 !important;
+}
+
+.theme-sepia .border-slate-800 {
+    border-color: var(--border-color) !important;
+}
+
+/* ========================================================
+   THEME 3: Gentle Soft Light Mode
+   ======================================================== */
+.theme-light {
+    --bg-main: #F8FAFC;
+    --bg-card: #FFFFFF;
+    --bg-elevated: #F1F5F9;
+    --border-color: #E2E8F0;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #64748B;
+    --accent-blue: #0284C7;
+    --accent-amber: #D97706;
+    --accent-emerald: #059669;
+}
+
+.theme-light body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+}
+
+.theme-light .bg-slate-900 {
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+}
+
+.theme-light .bg-slate-950 {
+    background-color: #F8FAFC !important;
+    color: #0F172A !important;
+}
+
+.theme-light .border-slate-800 {
+    border-color: #E2E8F0 !important;
+}
+
+.theme-light .text-white {
+    color: #0F172A !important;
+}
+
+.theme-light .text-slate-200 {
+    color: #1E293B !important;
+}
+
+.theme-light .text-slate-300 {
+    color: #334155 !important;
+}
+
+.theme-light .text-slate-400 {
+    color: #64748B !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.6);
+}
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+/* Navigation Tabs & Active Badges */
+.active-tab {
+    background: linear-gradient(135deg, #2563EB, #1D4ED8) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.active-filter {
+    background: #2563EB !important;
+    color: #FFFFFF !important;
+    border-color: #3B82F6 !important;
+}
+
+.active-cat {
+    background: #4338CA !important;
+    color: #FFFFFF !important;
+    border-color: #6366F1 !important;
+}
+
+.active-theme {
+    ring: 2px solid #38BDF8;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+/* Slide Cards Animation */
+.slide-card {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+}
+
+.slide-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Code and formula font */
+.font-mono {
+    font-family: var(--font-mono);
+}

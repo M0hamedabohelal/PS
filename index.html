@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="theme-dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة شرح وتفاعل CS413 | Problem Solving and Decision Making</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0B1120',
+                        darkCard: '#131E32',
+                        darkElevated: '#1B2942'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Custom Styles & Themes -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-blue-500 selection:text-white">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-slate-950/85 backdrop-blur-md border-b border-slate-800/80 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+            <!-- Brand & Course Meta -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-xl shadow-lg shadow-blue-500/20">
+                    🧠
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-black tracking-wider px-2 py-0.5 rounded-md bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                            CS413
+                        </span>
+                        <h1 class="text-base sm:text-lg font-black text-white">حل المشكلات واتخاذ القرار</h1>
+                    </div>
+                    <p class="text-xs text-slate-400">جامعة طنطا - كلية الحاسبات والمعلومات | د. مصطفى العشري</p>
+                </div>
+            </div>
+
+            <!-- Theme Toggles (Eye Comfort Modes) -->
+            <div class="flex items-center gap-3">
+                <div class="flex items-center p-1 rounded-xl bg-slate-900 border border-slate-800 text-xs">
+                    <button data-theme="dark" class="theme-btn px-2.5 py-1 rounded-lg text-slate-300 hover:text-white transition flex items-center gap-1" title="داكن مريح للعين (Night Comfort)">
+                        <span>🌙</span> <span class="hidden sm:inline">داكن مريح</span>
+                    </button>
+                    <button data-theme="sepia" class="theme-btn px-2.5 py-1 rounded-lg text-slate-300 hover:text-white transition flex items-center gap-1" title="نمط ورقي دافئ (Night Shift)">
+                        <span>📜</span> <span class="hidden sm:inline">دافئ (سيبيا)</span>
+                    </button>
+                    <button data-theme="light" class="theme-btn px-2.5 py-1 rounded-lg text-slate-300 hover:text-white transition flex items-center gap-1" title="فاتح ناصع">
+                        <span>☀️</span> <span class="hidden sm:inline">فاتح</span>
+                    </button>
+                </div>
+
+                <!-- GitHub Repo Link -->
+                <a href="https://github.com/mohamed6769/PS" target="_blank" rel="noopener noreferrer" 
+                   class="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition flex items-center gap-1.5 text-xs font-bold" title="عرض الكود على GitHub">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    <span class="hidden md:inline">GitHub</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero / Welcome Banner -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 border border-blue-900/40 p-6 sm:p-10 shadow-2xl">
+            <div class="relative z-10 max-w-3xl space-y-3">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/30 text-xs font-bold">
+                    <span>✨</span> منصة تعليمية تفاعلية شاملة لجميع سلايدات المقرر
+                </div>
+                <h2 class="text-2xl sm:text-4xl font-black text-white tracking-tight leading-tight">
+                    شرح مريح للعين <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-emerald-400">بالعامية المصرية</span> وأمثلة تفاعلية حية
+                </h2>
+                <p class="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+                    تمت تغطية الـ 35 سلايد بالكامل من المحاضرات (1 & 2 و 3) بدون إغفال أي تفصيلة أو معادلة! من صياغة المشكلة وقاعدة الـ 5 Ws مروراً بنظام STRIPS وتخطيط الروبوتات في الذكاء الاصطناعي وحتى تقنيات الحل الـ 14 وتجنب الأخطاء القاتلة.
+                </p>
+
+                <!-- Course Stats -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4">
+                    <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800">
+                        <div class="text-2xl font-black text-blue-400" id="statSlidesCount">35</div>
+                        <div class="text-xs text-slate-400 font-medium">سلايد كاملة ومصورة</div>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800">
+                        <div class="text-2xl font-black text-emerald-400">100%</div>
+                        <div class="text-xs text-slate-400 font-medium">شرح بالعامية وأمثلة</div>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800">
+                        <div class="text-2xl font-black text-indigo-400">14</div>
+                        <div class="text-xs text-slate-400 font-medium">تقنية حل مشكلات</div>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800">
+                        <div class="text-2xl font-black text-amber-400">STRIPS</div>
+                        <div class="text-xs text-slate-400 font-medium">محاكي ذكاء اصطناعي تفاعلي</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Background decorative glow -->
+            <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -right-20 -top-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+    </section>
+
+    <!-- Navigation View Mode Tabs -->
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+        <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-slate-800">
+            <button data-mode="cards" class="nav-tab active-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+                <span>🗂️</span> عرض البطاقات والشرح الكامل
+            </button>
+            <button data-mode="deck" class="nav-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+                <span>🖥️</span> وضع العرض التقديمي (سلايد بسلايد)
+            </button>
+            <button data-mode="simulator" class="nav-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+                <span>🤖</span> محاكي عالم المكعبات (Blocks World AI)
+            </button>
+            <button data-mode="tools" class="nav-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+                <span>🛠️</span> أدوات تفاعلية (5 Whys & Problem Statement)
+            </button>
+            <button data-mode="quiz" class="nav-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+                <span>🎯</span> اختبار وتدريب للامتحان
+            </button>
+        </div>
+    </nav>
+
+    <!-- Search & Filters Bar (Active in Cards Mode) -->
+    <section id="searchFilterSection" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-lg space-y-4">
+            <!-- Search Bar -->
+            <div class="relative">
+                <input type="text" id="globalSearchInput" placeholder="ابحث في أي سلايد (بالعربي أو الإنجليزي: مثل STRIPS, Gemba, 5 Whys, باريتو, Blocks World, الأخطاء الخمسة)..." 
+                       class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 pl-10 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition shadow-inner">
+                <span class="absolute left-3 top-3.5 text-slate-500 text-sm">🔍</span>
+            </div>
+
+            <!-- Filters Grid -->
+            <div class="flex flex-wrap items-center justify-between gap-4 pt-1">
+                <!-- Lecture Selector -->
+                <div class="flex items-center gap-1.5 flex-wrap">
+                    <span class="text-xs font-bold text-slate-400 ml-1">المحاضرة:</span>
+                    <button data-lec="all" onclick="window.setLectureFilter('all')" class="lec-filter-btn active-filter px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 bg-slate-800 text-slate-200 transition">
+                        الكل (35)
+                    </button>
+                    <button data-lec="lec1_2" onclick="window.setLectureFilter('lec1_2')" class="lec-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 transition">
+                        المحاضرة 1 & 2 (28 سلايد)
+                    </button>
+                    <button data-lec="lec3" onclick="window.setLectureFilter('lec3')" class="lec-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 transition">
+                        المحاضرة 3 (7 سلايدات)
+                    </button>
+                </div>
+
+                <!-- Slide counter badge -->
+                <div class="flex items-center gap-2">
+                    <span class="text-xs text-slate-400">عدد النتائج:</span>
+                    <span id="slidesCountBadge" class="px-2.5 py-1 rounded-lg bg-blue-500/20 text-blue-400 font-bold text-xs border border-blue-500/30">
+                        35 سلايد
+                    </span>
+                    <button onclick="window.resetFilters()" class="text-xs text-slate-400 hover:text-white underline transition">
+                        إلغاء الفلاتر
+                    </button>
+                </div>
+            </div>
+
+            <!-- Category Topics Filter -->
+            <div class="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
+                <span class="text-slate-400 font-bold shrink-0 ml-1">الموضوع:</span>
+                <button data-cat="all" onclick="window.setCategoryFilter('all')" class="cat-filter-btn active-cat px-2.5 py-1 rounded-lg border border-slate-700 bg-slate-800 text-slate-200 shrink-0">الكل</button>
+                <button data-cat="Problem Statement" onclick="window.setCategoryFilter('Problem Statement')" class="cat-filter-btn px-2.5 py-1 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 shrink-0">صياغة المشكلة</button>
+                <button data-cat="Problem Solving Steps" onclick="window.setCategoryFilter('Problem Solving Steps')" class="cat-filter-btn px-2.5 py-1 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 shrink-0">خطوات الحل و Gemba</button>
+                <button data-cat="AI Planning" onclick="window.setCategoryFilter('AI Planning')" class="cat-filter-btn px-2.5 py-1 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 shrink-0">التخطيط بالذكاء الاصطناعي</button>
+                <button data-cat="Blocks World" onclick="window.setCategoryFilter('Blocks World')" class="cat-filter-btn px-2.5 py-1 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 shrink-0">عالم المكعبات</button>
+                <button data-cat="STRIPS Representation" onclick="window.setCategoryFilter('STRIPS Representation')" class="cat-filter-btn px-2.5 py-1 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 shrink-0">نظام STRIPS والـ Triples</button>
+                <button data-cat="Decision Making & Skills" onclick="window.setCategoryFilter('Decision Making & Skills')" class="cat-filter-btn px-2.5 py-1 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 shrink-0">صنع القرار والمهارات</button>
+                <button data-cat="Techniques & Tools" onclick="window.setCategoryFilter('Techniques & Tools')" class="cat-filter-btn px-2.5 py-1 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 shrink-0">تقنيات الحل الـ 14</button>
+                <button data-cat="Mistakes to Avoid" onclick="window.setCategoryFilter('Mistakes to Avoid')" class="cat-filter-btn px-2.5 py-1 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-800 shrink-0">الأخطاء القاتلة الخمسة</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Dynamic Views Mount -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
+
+        <!-- VIEW 1: Cards View Grid -->
+        <div id="cardsViewContainer">
+            <div id="cardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically Rendered by app.js -->
+            </div>
+        </div>
+
+        <!-- VIEW 2: Presentation Deck View -->
+        <div id="deckViewContainer" class="hidden">
+            <div id="deckViewContent">
+                <!-- Dynamically Rendered by app.js -->
+            </div>
+        </div>
+
+        <!-- VIEW 3: Interactive Blocks World Simulator -->
+        <div id="simulatorViewContainer" class="hidden">
+            <div id="blocksSimMount">
+                <!-- Mounted by blocksSimulator.js -->
+            </div>
+        </div>
+
+        <!-- VIEW 4: Interactive Tools (5 Whys & Problem Statement Generator) -->
+        <div id="toolsViewContainer" class="hidden space-y-8">
+            <!-- Tool A: Problem Statement Builder -->
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl">
+                <div class="flex items-center gap-3 pb-4 border-b border-slate-800">
+                    <span class="text-2xl">📝</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">مولد صياغة المشكلة الذكي (قاعدة الـ 5 Ws)</h3>
+                        <p class="text-xs text-slate-400 mt-0.5">طبق خطوات سلايد 3 و 5 واصنع Problem Statement رسمية واحترافية لمشروعك</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">1. Who (مَن المتضرر؟)</label>
+                        <input type="text" id="psWho" placeholder="مثال: طلبة الفرقة الرابعة بكلية الحاسبات" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-200">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">2. What (ما هي المشكلة بالضبط؟)</label>
+                        <input type="text" id="psWhat" placeholder="مثال: تعطل مفاجئ وبطء شديد في تسجيل المقررات" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-200">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">3. Where (أين تقع المشكلة؟)</label>
+                        <input type="text" id="psWhere" placeholder="مثال: بوابة التسجيل الأكاديمي الإلكترونية" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-200">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">4. When (متى تحدث؟)</label>
+                        <input type="text" id="psWhen" placeholder="مثال: في الدقائق الأولى من فتح التسجيل صباحاً" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-200">
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block text-xs font-bold text-slate-300 mb-1">5. Why (لماذا يعد حلها حرجاً؟ الأثر المترتب)</label>
+                        <input type="text" id="psWhy" placeholder="مثال: لأن الطلاب قد يفقدون فرصة التخرج وتتعطل جداولهم الدراسية" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-200">
+                    </div>
+                </div>
+
+                <div class="mt-4 flex items-center justify-end gap-3">
+                    <button onclick="window.buildProblemStatement()" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition shadow-lg shadow-blue-600/30">
+                        ⚡ توليد صياغة المشكلة الرسمية
+                    </button>
+                </div>
+
+                <!-- Result Box -->
+                <div id="psOutputCard" class="hidden mt-6 p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                        <span class="text-xs font-bold text-emerald-400">✅ الصياغة المعتمدة الجاهزة:</span>
+                        <button onclick="window.copyGeneratedPS()" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-300 transition">
+                            📋 نسخ النص
+                        </button>
+                    </div>
+                    <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 text-sm text-slate-200 leading-relaxed" id="generatedPSAr"></div>
+                    <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 text-xs font-mono text-slate-300 leading-relaxed" id="generatedPSEn"></div>
+                </div>
+            </div>
+
+            <!-- Tool B: 5 Whys Root Cause Analyzer -->
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl">
+                <div class="flex items-center gap-3 pb-4 border-b border-slate-800">
+                    <span class="text-2xl">🔍</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">مُحلل الأسباب الجذرية التفاعلي (تقنية 5 Whys - سلايد 10)</h3>
+                        <p class="text-xs text-slate-400 mt-0.5">اسأل 'ليه؟' خمس مرات متتالية حتى تكتشف السبب الجذري الحقيقي وتمنع تكرار المشكلة</p>
+                    </div>
+                </div>
+
+                <div class="mt-4 flex flex-wrap gap-2 items-center">
+                    <span class="text-xs text-slate-400 font-bold">جرّب أمثلة واقعية جاهزة:</span>
+                    <button onclick="window.runFiveWhysPreset('server')" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-400 text-xs font-bold border border-slate-700 transition">
+                        💥 مثال: سقوط سيرفر الكلية في وقت التسجيل
+                    </button>
+                    <button onclick="window.runFiveWhysPreset('app')" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-400 text-xs font-bold border border-slate-700 transition">
+                        📱 مثال: إلغاء تثبيت تطبيق التوصيل
+                    </button>
+                </div>
+
+                <div class="mt-4">
+                    <label class="block text-xs font-bold text-slate-300 mb-1">المشكلة الظاهرية (العرض السطحي):</label>
+                    <input type="text" id="fiveWhysProblemInput" placeholder="اكتب مشكلتك هنا أو اختر أحد الأمثلة بالأعلى..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-200">
+                </div>
+
+                <div id="fiveWhysStepsContainer" class="mt-2"></div>
+            </div>
+        </div>
+
+        <!-- VIEW 5: Interactive Quiz -->
+        <div id="quizViewContainer" class="hidden max-w-4xl mx-auto space-y-6">
+            <div class="text-center space-y-2 mb-6">
+                <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30 text-xs font-bold">
+                    📝 بنك الأسئلة والتدريب للاختبارات
+                </span>
+                <h3 class="text-2xl font-black text-white">اختبر فهمك لمقرر CS413</h3>
+                <p class="text-xs text-slate-400">أسئلة من صلب المحاضرات حول نظام STRIPS، مبادئ Gemba، قواعد باريتو، وأخطاء حل المشكلات</p>
+            </div>
+
+            <div id="quizScoreBanner" class="hidden"></div>
+            <div id="quizQuestionsContainer" class="space-y-4"></div>
+
+            <div class="text-center pt-4">
+                <button onclick="window.submitQuiz()" class="px-8 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-sm shadow-xl shadow-blue-600/30 transition">
+                    تسليم الإجابات وحساب النتيجة 🏁
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Lightbox Modal for Original Slide Zoom -->
+    <div id="lightboxModal" class="hidden fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6">
+        <!-- Lightbox Top bar -->
+        <div class="flex items-center justify-between gap-4 text-slate-200 border-b border-slate-800 pb-3">
+            <div>
+                <h4 id="lightboxTitle" class="text-sm sm:text-base font-bold text-white"></h4>
+                <div id="lightboxNum" class="text-xs text-slate-400 mt-0.5"></div>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="window.lightboxPrev()" class="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-bold transition">
+                    السابق (⬅️)
+                </button>
+                <button onclick="window.lightboxNext()" class="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-bold transition">
+                    التالي (➡️)
+                </button>
+                <button onclick="window.closeLightbox()" class="p-2 px-3 rounded-xl bg-red-600/20 hover:bg-red-600/40 text-red-300 text-xs font-black transition border border-red-500/30">
+                    ✕ إغلاق
+                </button>
+            </div>
+        </div>
+
+        <!-- Lightbox Center Image -->
+        <div class="flex items-center justify-center flex-grow p-2 overflow-hidden">
+            <img id="lightboxImg" src="" alt="Slide Zoom" class="max-w-full max-h-[82vh] object-contain rounded-2xl shadow-2xl border border-slate-800">
+        </div>
+
+        <!-- Lightbox Bottom Hint -->
+        <div class="text-center text-xs text-slate-500 pt-2 border-t border-slate-900">
+            يمكنك استخدام أسهم لوحة المفاتيح (⬅️ و ➡️) للتنقل، وزر Escape للخروج.
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-900 py-8 mt-12 text-center text-xs text-slate-500 space-y-2">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-right">
+                <div class="font-bold text-slate-400">CS413: Problem Solving and Decision Making</div>
+                <div>جامعة طنطا - كلية الحاسبات والمعلومات | د. مصطفى العشري</div>
+            </div>
+            <div class="flex items-center gap-4 text-slate-400">
+                <a href="#searchFilterSection" class="hover:text-white transition">أعلى الصفحة</a>
+                <span>•</span>
+                <a href="https://github.com/mohamed6769/PS" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">مستودع GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="data/slidesData.js"></script>
+    <script src="assets/js/blocksSimulator.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
