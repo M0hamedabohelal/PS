@@ -807,18 +807,21 @@ header {
 .badge-lec12 { background-color: rgba(14, 165, 233, 0.18) !important; color: #38BDF8 !important; border: 1px solid rgba(14, 165, 233, 0.35) !important; }
 .badge-lec3 { background-color: rgba(16, 185, 129, 0.18) !important; color: #34D399 !important; border: 1px solid rgba(16, 185, 129, 0.35) !important; }
 .badge-ch2 { background-color: rgba(168, 85, 247, 0.18) !important; color: #C084FC !important; border: 1px solid rgba(168, 85, 247, 0.35) !important; }
+.badge-sec1 { background-color: rgba(249, 115, 22, 0.18) !important; color: #FB923C !important; border: 1px solid rgba(249, 115, 22, 0.35) !important; }
 .badge-slide-num { background-color: #1E293B !important; color: #E2E8F0 !important; border: 1px solid #334155 !important; }
 .badge-category { background-color: rgba(99, 102, 241, 0.15) !important; color: #818CF8 !important; border: 1px solid rgba(99, 102, 241, 0.3) !important; }
 
 .theme-sepia .badge-lec12 { background-color: rgba(229, 169, 60, 0.18) !important; color: #FCD34D !important; border: 1px solid rgba(229, 169, 60, 0.35) !important; }
 .theme-sepia .badge-lec3 { background-color: rgba(109, 190, 145, 0.18) !important; color: #A7F3D0 !important; border: 1px solid rgba(109, 190, 145, 0.35) !important; }
 .theme-sepia .badge-ch2 { background-color: rgba(216, 112, 147, 0.2) !important; color: #F472B6 !important; border: 1px solid rgba(216, 112, 147, 0.4) !important; }
+.theme-sepia .badge-sec1 { background-color: rgba(234, 88, 12, 0.2) !important; color: #FDBA74 !important; border: 1px solid rgba(234, 88, 12, 0.4) !important; }
 .theme-sepia .badge-slide-num { background-color: #362820 !important; color: #FAF6F0 !important; border: 1px solid #5A483E !important; }
 .theme-sepia .badge-category { background-color: rgba(229, 169, 60, 0.2) !important; color: #FDE68A !important; border: 1px solid rgba(229, 169, 60, 0.4) !important; }
 
 .theme-light .badge-lec12 { background-color: #E0F2FE !important; color: #0369A1 !important; border: 1px solid #BAE6FD !important; }
 .theme-light .badge-lec3 { background-color: #DCFCE7 !important; color: #15803D !important; border: 1px solid #BBF7D0 !important; }
 .theme-light .badge-ch2 { background-color: #F3E8FF !important; color: #7E22CE !important; border: 1px solid #E9D5FF !important; }
+.theme-light .badge-sec1 { background-color: #FFEDD5 !important; color: #C2410C !important; border: 1px solid #FED7AA !important; }
 .theme-light .badge-slide-num { background-color: #F1F5F9 !important; color: #334155 !important; border: 1px solid #CBD5E1 !important; }
 .theme-light .badge-category { background-color: #EEF2FF !important; color: #4338CA !important; border: 1px solid #C7D2FE !important; }
 

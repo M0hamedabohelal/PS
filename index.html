@@ -87,13 +87,13 @@
                     شرح مريح للعين <span class="hero-title-accent font-black">بالعامية المصرية</span> وأمثلة تفاعلية حية
                 </h2>
                 <p class="hero-desc text-xs sm:text-sm md:text-base leading-relaxed font-normal">
-                    تمت تغطية الـ 64 سلايد وصفحة بالكامل من المحاضرات (1 & 2 و 3) وملف شابتر 2 (تحليل المشكلات وأصحاب المصلحة) بدون إغفال أي تفصيلة أو مفهوم! يشمل صياغة المشكلة، تحليل السبب الجذري (RCA)، تقنية 5 Whys، مخطط هيكل السمكة وإيشيكاوا والـ 6Ms، نظام STRIPS، والفرق الجوهري بين المساهمين وأصحاب المصلحة ومصفوفة Power/Interest.
+                    تمت تغطية الـ 91 سلايد وصفحة بالكامل من المحاضرات (1 & 2 و 3) وملف شابتر 2 وسكشن 1 (مقدمة نظرية الطوابير Queuing Theory) بدون إغفال أي تفصيلة أو مفهوم! يشمل صياغة المشكلة، تحليل السبب الجذري (RCA)، تقنية 5 Whys، مخطط هيكل السمكة وإيشيكاوا والـ 6Ms، نظام STRIPS، مصفوفة أصحاب المصلحة، صيغة كيندال A/B/c/N/K، سلوكيات الطوابير (Balking, Renege, Jockeying)، وقواعد الخدمة FIFO و LIFO و SIRO و SPT.
                 </p>
 
                 <!-- Course Stats -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 pt-2 sm:pt-4">
                     <div class="hero-stat-card p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl text-center sm:text-right">
-                        <div class="text-xl sm:text-2xl font-black text-blue-500" id="statSlidesCount">64</div>
+                        <div class="text-xl sm:text-2xl font-black text-blue-500" id="statSlidesCount">91</div>
                         <div class="hero-stat-label text-[11px] sm:text-xs font-medium">سلايد وصفحة مصورة</div>
                     </div>
                     <div class="hero-stat-card p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl text-center sm:text-right">
@@ -101,7 +101,7 @@
                         <div class="hero-stat-label text-[11px] sm:text-xs font-medium">شرح بالعامية وأمثلة</div>
                     </div>
                     <div class="hero-stat-card p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl text-center sm:text-right">
-                        <div class="text-xl sm:text-2xl font-black text-indigo-500">18+</div>
+                        <div class="text-xl sm:text-2xl font-black text-indigo-500">24+</div>
                         <div class="hero-stat-label text-[11px] sm:text-xs font-medium">أداة وتقنية تحليل</div>
                     </div>
                     <div class="hero-stat-card p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl text-center sm:text-right">
@@ -112,6 +112,9 @@
 
                 <!-- PDF Resource Link -->
                 <div class="pt-2 sm:pt-3 flex flex-wrap items-center gap-2">
+                    <a href="assets/docs/CS413 - Section1.pdf" download="CS413 - Section1.pdf" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500/15 hover:bg-amber-500/25 text-amber-600 dark:text-amber-300 border border-amber-500/30 transition shadow-sm">
+                        <span>📄</span> تحميل ملف سكشن 1 الأصلي (CS413 - Section1.pdf)
+                    </a>
                     <a href="assets/docs/DOC-20261031-WA0051.pdf" download="Chapter2-Problem-Analysis-DOC-WA0051.pdf" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-500/15 hover:bg-blue-500/25 text-blue-600 dark:text-blue-300 border border-blue-500/30 transition shadow-sm">
                         <span>📄</span> تحميل ملف الشابتر الأصلي (DOC-20261031-WA0051.pdf)
                     </a>
@@ -129,7 +132,7 @@
         <div class="filter-container rounded-2xl p-3 sm:p-5 shadow-sm space-y-2.5 sm:space-y-4 w-full max-w-full min-w-0">
             <!-- Search Bar -->
             <div class="relative w-full min-w-0">
-                <input type="text" id="globalSearchInput" placeholder="ابحث في أي سلايد أو مفهوم (مثل Fishbone, 5 Whys, STRIPS, Stakeholders, 6Ms)..." 
+                <input type="text" id="globalSearchInput" placeholder="ابحث في أي سلايد أو مفهوم (مثل Kendall, Queuing, Balking, 5 Whys, Fishbone, STRIPS)..." 
                        class="search-input w-full rounded-xl px-3.5 sm:px-4 py-2 sm:py-3 pl-9 sm:pl-10 text-xs sm:text-sm focus:outline-none transition shadow-inner">
                 <span class="absolute left-3 top-2.5 sm:top-3.5 text-slate-400 text-sm">🔍</span>
             </div>
@@ -137,9 +140,9 @@
             <!-- Filters Grid -->
             <div class="space-y-2.5 w-full min-w-0">
                 <!-- Lecture Selector as Grid on Mobile (2 cols), Flex on Desktop -->
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:flex sm:items-center sm:gap-2 w-full">
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-1.5 sm:flex sm:items-center sm:gap-2 w-full">
                     <button data-lec="all" onclick="window.setLectureFilter('all')" class="lec-filter-btn active-filter filter-pill py-1.5 px-2.5 sm:px-3 rounded-lg sm:rounded-xl text-xs font-bold transition flex items-center justify-center">
-                        الكل (64)
+                        الكل (91)
                     </button>
                     <button data-lec="lec1_2" onclick="window.setLectureFilter('lec1_2')" class="lec-filter-btn filter-pill py-1.5 px-2.5 sm:px-3 rounded-lg sm:rounded-xl text-xs font-bold transition flex items-center justify-center">
                         محاضرة 1&2 (28)
@@ -150,6 +153,9 @@
                     <button data-lec="ch2" onclick="window.setLectureFilter('ch2')" class="lec-filter-btn filter-pill py-1.5 px-2.5 sm:px-3 rounded-lg sm:rounded-xl text-xs font-bold transition flex items-center justify-center">
                         شابتر 2 (29)
                     </button>
+                    <button data-lec="sec1" onclick="window.setLectureFilter('sec1')" class="lec-filter-btn filter-pill py-1.5 px-2.5 sm:px-3 rounded-lg sm:rounded-xl text-xs font-bold transition flex items-center justify-center">
+                        سكشن 1 (27)
+                    </button>
                 </div>
 
                 <!-- Slide counter badge & reset -->
@@ -157,7 +163,7 @@
                     <div class="flex items-center gap-1.5">
                         <span class="text-xs filter-label">النتائج:</span>
                         <span id="slidesCountBadge" class="results-badge px-2 py-0.5 rounded-md sm:rounded-lg font-bold text-xs">
-                            64 سلايد وصفحة
+                            91 سلايد وصفحة
                         </span>
                     </div>
                     <button onclick="window.resetFilters()" class="text-xs reset-btn underline transition font-medium">
@@ -171,6 +177,11 @@
                     <div class="flex-grow overflow-x-auto scrollbar-none py-0.5 min-w-0">
                         <div class="inline-flex items-center gap-1.5 text-xs whitespace-nowrap">
                             <button data-cat="all" onclick="window.setCategoryFilter('all')" class="cat-filter-btn active-cat filter-pill px-2.5 py-1 rounded-lg shrink-0">الكل</button>
+                            <button data-cat="Queuing Theory Intro" onclick="window.setCategoryFilter('Queuing Theory Intro')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">مقدمة نظرية الطوابير</button>
+                            <button data-cat="Queuing Characteristics" onclick="window.setCategoryFilter('Queuing Characteristics')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">خصائص ومقاييس الطوابير</button>
+                            <button data-cat="Calling Population & Capacity" onclick="window.setCategoryFilter('Calling Population & Capacity')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">مجتمع العملاء والسعة</button>
+                            <button data-cat="Queue Behavior & Discipline" onclick="window.setCategoryFilter('Queue Behavior & Discipline')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">سلوك ونظام الطابور</button>
+                            <button data-cat="Kendall Notation & States" onclick="window.setCategoryFilter('Kendall Notation & States')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">صيغة كيندال وحالة النظام</button>
                             <button data-cat="Problem Analysis" onclick="window.setCategoryFilter('Problem Analysis')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">تحليل المشكلة وأبعادها</button>
                             <button data-cat="RCA & 5 Whys" onclick="window.setCategoryFilter('RCA & 5 Whys')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">السبب الجذري و 5 Whys</button>
                             <button data-cat="Fishbone & 6Ms" onclick="window.setCategoryFilter('Fishbone & 6Ms')" class="cat-filter-btn filter-pill px-2.5 py-1 rounded-lg shrink-0">هيكل السمكة وإيشيكاوا</button>

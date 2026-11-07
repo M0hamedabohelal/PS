@@ -236,8 +236,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (state.deckIndex >= state.filteredSlides.length) state.deckIndex = state.filteredSlides.length - 1;
 
         const slide = state.filteredSlides[state.deckIndex];
-        const lecBadgeClass = slide.lec === 'lec1_2' ? 'badge-lec12' : (slide.lec === 'lec3' ? 'badge-lec3' : 'badge-ch2');
-        const lecBadgeText = slide.lec === 'lec1_2' ? 'محاضرة 1&2' : (slide.lec === 'lec3' ? 'محاضرة 3' : 'شابتر 2: تحليل المشكلات');
+        const lecBadgeClass = slide.lec === 'lec1_2' ? 'badge-lec12' : (slide.lec === 'lec3' ? 'badge-lec3' : (slide.lec === 'sec1' ? 'badge-sec1' : 'badge-ch2'));
+        const lecBadgeText = slide.lec === 'lec1_2' ? 'محاضرة 1&2' : (slide.lec === 'lec3' ? 'محاضرة 3' : (slide.lec === 'sec1' ? 'سكشن 1' : 'شابتر 2: تحليل المشكلات'));
         const slideLabel = slide.lec === 'ch2' ? `صفحة ${slide.slideNum}` : `سلايد ${slide.slideNum}`;
 
         deckContainer.innerHTML = `
